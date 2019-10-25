@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: MK Design Bridge Addons
-Description: Fügt einig erweiterungen zur Bridge hinzu.
+Description: Fügt einig Erweiterungen zur Bridge hinzu.
 Version: 0.3
 Author: Marcel Kaiser
 Author URI: https://www.your-own-design.de/
