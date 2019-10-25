@@ -1,0 +1,252 @@
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////
+flexbox
+/////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////
+mkd_page_box
+/////////////////////////////////////////////////////////////////////////////////////////////////////*/
+.mkd_page_box {
+  height: 100%;
+}
+
+.mkd_page_box>.vc_column-inner>.wpb_wrapper {
+    margin-bottom: 72px;
+}
+
+.mkd_page_box .vc_column-inner {
+  padding: 0px !important;
+  margin: 0px;
+  background: rgb(255, 255, 255);
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  -webkit-transition: all .5s ease;
+  transition: all .5s ease;
+}
+
+.mkd_page_box .vc_column-inner:hover {
+  -webkit-box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.25);
+}
+
+.mkd_page_box .wpb_single_image .vc_single_image-wrapper {
+  padding-bottom: 65%;
+  min-width: 100%;
+  background-size: cover;
+  background-position: center center;
+}
+
+.mkd_page_box .wpb_text_column {
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.mkd_page_box .wpb_text_column span {
+  color: #004f9f;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+}
+
+.mkd_page_box .qbutton {
+  left: 20px;
+  bottom: 20px;
+  position: absolute;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////
+mkd_icon_text
+/////////////////////////////////////////////////////////////////////////////////////////////////////*/
+.mkd_icon_text p {
+  padding-left: 83px;
+}
+
+.mkd_icon_text a.icon_with_title_link {
+  padding-left: 83px;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////
+mkd_portfolio_box
+/////////////////////////////////////////////////////////////////////////////////////////////////////*/
+.mkd_portfolio_box {
+  padding: 0px !important;
+  margin: 0px;
+  background: rgb(255, 255, 255);
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  -webkit-transition: all .5s ease;
+  transition: all .5s ease;
+}
+
+.mkd_portfolio_box:hover {
+  -webkit-box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.25);
+}
+
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////
+mkd_portfolio_list
+/////////////////////////////////////////////////////////////////////////////////////////////////////*/
+.mkd_portfolio_list .vc_column_container .vc_column-inner {
+  padding: 0px !important;
+  margin: 0px 15px 30px 15px;
+  background: rgb(255, 255, 255);
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  -webkit-transition: all .5s ease;
+  transition: all .5s ease;
+}
+
+.mkd_portfolio_list .vc_column_container .vc_column-inner:hover {
+  -webkit-box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.25);
+}
+
+.mkd_portfolio_list .vc_custom_1485544005384 {
+  margin-bottom: 0px !important;
+  position: relative;
+}
+
+.mkd_portfolio_list .vc_column_container .vc_column-inner .vc_single_image-wrapper {
+  height: 150px;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  margin: 50px 50px;
+  display: block;
+}
+
+.mkd_portfolio_list .wpb_single_image.vc_align_left {
+  position: relative;
+}
+
+.mkd_portfolio_list .qbutton {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  border: solid 1px;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////
+mkd_post_box
+/////////////////////////////////////////////////////////////////////////////////////////////////////*/
+.mkd_blog_box {
+  height: 100%;
+}
+
+.mkd_blog_box .section_inner_margin .section_inner_margin {
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.mkd_blog_box .wpb_column .wpb_column {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.mkd_blog_box .wpb_wrapper .wpb_wrapper {
+  height: 100%;
+}
+
+.mkd_blog_box .vc_column-inner .vc_column-inner>.wpb_wrapper {
+  margin-bottom: 25px;
+  padding-bottom: 5px;
+}
+
+.mkd_blog_box .vc_column-inner .vc_column-inner {
+  padding: 0px !important;
+  margin: 0px;
+  background: rgb(255, 255, 255);
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  -webkit-transition: all .5s ease;
+  transition: all .5s ease;
+}
+
+.mkd_blog_box .vc_column-inner .vc_column-inner:hover {
+  -webkit-box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.25);
+}
+
+.mkd_blog_box .wpb_single_image {
+  margin-bottom: 20px !important;
+}
+
+.mkd_blog_box .wpb_single_image .vc_single_image-wrapper {
+  padding-bottom: 65%;
+  min-width: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.mkd_blog_box .wpb_text_column {
+  margin-bottom: 35px !important;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.mkd_blog_box .wpb_text_column span {
+  color: #004f9f;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+}
+
+.mkd_blog_box .qbutton {
+  left: 20px;
+  bottom: 20px;
+  position: absolute;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////
+mkd_blog_overlay_box
+/////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+.mkd_blog_overlay_box {}
+
+.mkd_blog_overlay_box .mkd_elements_item_textbox {
+  position: absolute !important;
+  z-index: 2 !important;
+  transform: translateY(-50%) !important;
+  top: 50% !important;
+  width: 50% !important;
+  height: inherit !important;
+  background-color: #FFF;
+  padding: 0px !important;
+  margin: 0px;
+  background: rgb(255, 255, 255);
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  -webkit-transition: all .5s ease;
+  transition: all .5s ease;
+}
+
+.mkd_blog_overlay_box:hover .mkd_elements_item_textbox {
+  -webkit-box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.25);
+}
+
+
+.mkd_blog_overlay_box .mkd_elements_item_textbox.left {
+  left: 15px !important;
+}
+
+.mkd_blog_overlay_box .mkd_elements_item_textbox.right {
+  right: 15px !important;
+}

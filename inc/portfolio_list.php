@@ -1,0 +1,276 @@
+<?php
+// Create Shortcode mkd_portfolio_list
+// Use the shortcode: [mkd_portfolio_list post_type="" post_status="" numberposts="" order="" orderby=""]
+function create_mkdportfoliolist_shortcode($atts) {
+	// Attributes
+	$atts = shortcode_atts(
+		array(
+			'post_type' => 'portfolio_page',
+			'post_status' => '',
+			'numberposts' => '',
+			'order' => '',
+			'orderby' => '',
+      'exclusion' => '',
+		),
+		$atts,
+		'mkd_portfolio_list'
+	);
+	// Attributes in var
+	$post_type = $atts['post_type'];
+	$post_status = $atts['post_status'];
+	$numberposts = $atts['numberposts'];
+	$order = $atts['order'];
+	$orderby = $atts['orderby'];
+  $exclusion = $atts['exclusion'];
+
+  $exclusion = explode(",", $exclusion);
+
+  $query = new WP_Query(array(
+    'post_type'		=> $post_type,
+    'post_status'	=> $post_status,
+    'numberposts'	=> $numberposts,
+    'order'			=> $order,
+    'orderby'		=> $orderby
+  ));
+
+	// Output Code
+  $output = '<div class="mkd_portfolio_list wpb_column vc_column_container vc_col-sm-12">';
+  $output .= '<div class="vc_column-inner">';
+  $output .= '<div class="wpb_wrapper" style="margin: 0px -15px">';
+  $output .= '<div class="vc_row wpb_row section vc_row-fluid vc_inner " style=" text-align:left;">';
+  $output .= '<div class=" full_section_inner clearfix">';
+
+  while ($query->have_posts())
+  {
+    $query->the_post();
+    $post_id = get_the_ID();
+
+    if(!in_array($post_id, $exclusion))
+    {
+      $output .= '<div class="wpb_column vc_column_container vc_col-sm-4 vc_col-has-fill ">';
+      $output .= '<div class="vc_column-inner">';
+      $output .= '<div class="wpb_wrapper">';
+      $output .= '<div class="wpb_single_image wpb_content_element vc_align_left">';
+      $output .= '<div class="wpb_wrapper">';
+      $output .= '<a href="'.get_permalink($post_id).'" target="_self" alt="'.get_the_title($post_id).'" title="'.get_the_title($post_id).'">';
+      $output .= '<div class="vc_single_image-wrapper vc_box_border_grey" style="background-image: url('.get_the_post_thumbnail_url($post_id).')">';
+      $output .= '</div>';
+      $output .= '</a>';
+			if(get_post_meta( $post_id, 'mkd_portfolio_video_video-link', TRUE ))
+			{
+				$output .= '<a itemprop="url" href="'.get_post_meta( $post_id, 'mkd_portfolio_video_video-link', TRUE ).'" alt="'.get_the_title($post_id).'" title="'.get_the_title($post_id).'" class="qbutton  small default">Video<i class="qode_icon_font_awesome fa fa-play qode_button_icon_element" style=""></i></a>';
+			}
+      $output .= '</div>';
+      $output .= '</div>';
+      $output .= '</div>';
+      $output .= '</div>';
+      $output .= '</div>';
+    }
+  }
+
+  $output .= '</div>';
+  $output .= '</div>';
+  $output .= '</div>';
+  $output .= '</div>';
+  $output .= '</div>';
+
+	return $output;
+}
+add_shortcode( 'mkd_portfolio_list', 'create_mkdportfoliolist_shortcode' );
+
+// Create Portfolio List element for Visual Composer
+add_action( 'vc_before_init', 'mkdportfoliolist_integrateWithVC' );
+function mkdportfoliolist_integrateWithVC() {
+	vc_map( array(
+		'name' => __( 'Portfolio List', 'mkd-text' ),
+		'base' => 'mkd_portfolio_list',
+    'icon' => plugins_url( 'images/favicon.jpg', dirname(__FILE__) ),
+		'show_settings_on_create' => true,
+		'category' => __( 'MK Design', 'mkd-text'),
+		'params' => array(
+			array(
+				'type' => 'dropdown',
+				'holder' => 'div',
+				'class' => '',
+				'admin_label' => false,
+				'heading' => __( 'Post Status', 'mkd-text' ),
+				'param_name' => 'post_status',
+        'value' => array(
+          'Publish' => 'publish',
+          'Future' => 'future',
+          'Draft' => 'draft',
+          'Pending' => 'pending',
+          'Private' => 'private',
+          'Trash' => 'trash',
+          'Auto-Draft' => 'auto-draft',
+          'Inherit' => 'inherit',
+        ),
+			),
+			array(
+				'type' => 'textfield',
+				'holder' => 'div',
+				'class' => '',
+				'admin_label' => false,
+				'heading' => __( 'Gesamtanzahl der anzuzeigenden Elemente', 'mkd-text' ),
+				'param_name' => 'numberposts',
+			),
+      array(
+				'type' => 'textfield',
+				'holder' => 'div',
+				'class' => '',
+				'admin_label' => false,
+				'heading' => __( 'Ausschließen', 'mkd-text' ),
+				'param_name' => 'exclusion',
+			),
+			array(
+				'type' => 'dropdown',
+				'holder' => 'div',
+				'class' => '',
+				'admin_label' => false,
+				'heading' => __( 'Sortierung', 'mkd-text' ),
+				'param_name' => 'order',
+        'value' => array(
+          'aufsteigend' => 'ASC',
+          'absteigend' => 'DESC',
+        ),
+			),
+			array(
+				'type' => 'dropdown',
+				'holder' => 'div',
+				'class' => '',
+				'admin_label' => false,
+				'heading' => __( 'Sortiert nach', 'mkd-text' ),
+				'param_name' => 'orderby',
+        'value' => array(
+          'none' => 'none',
+          'ID' => 'ID',
+          'author' => 'author',
+          'title' => 'title',
+          'name' => 'name',
+          'date' => 'date',
+          'menu_order' => 'menu_order',
+        ),
+			),
+		)
+	) );
+}
+
+
+/**
+ * Generated by the WordPress Meta Box Generator at http://goo.gl/8nwllb
+ */
+class Rational_Meta_Box {
+	private $screens = array(
+		'portfolio_page',
+	);
+	private $fields = array(
+		array(
+			'id' => 'video-link',
+			'label' => 'Video Link',
+			'type' => 'url',
+		),
+	);
+
+	/**
+	 * Class construct method. Adds actions to their respective WordPress hooks.
+	 */
+	public function __construct() {
+		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
+		add_action( 'save_post', array( $this, 'save_post' ) );
+	}
+
+	/**
+	 * Hooks into WordPress' add_meta_boxes function.
+	 * Goes through screens (post types) and adds the meta box.
+	 */
+	public function add_meta_boxes() {
+		foreach ( $this->screens as $screen ) {
+			add_meta_box(
+				'mkd-portfolio-video',
+				__( 'MKD Portfolio Video', 'mkd-text' ),
+				array( $this, 'add_meta_box_callback' ),
+				$screen,
+				'advanced',
+				'default'
+			);
+		}
+	}
+
+	/**
+	 * Generates the HTML for the meta box
+	 *
+	 * @param object $post WordPress post object
+	 */
+	public function add_meta_box_callback( $post ) {
+		wp_nonce_field( 'mkd_portfolio_video_data', 'mkd_portfolio_video_nonce' );
+		$this->generate_fields( $post );
+	}
+
+	/**
+	 * Generates the field's HTML for the meta box.
+	 */
+	public function generate_fields( $post ) {
+		$output = '';
+		foreach ( $this->fields as $field ) {
+			$label = '<label for="' . $field['id'] . '">' . $field['label'] . '</label>';
+			$db_value = get_post_meta( $post->ID, 'mkd_portfolio_video_' . $field['id'], true );
+			switch ( $field['type'] ) {
+				default:
+					$input = sprintf(
+						'<input %s id="%s" name="%s" type="%s" value="%s">',
+						$field['type'] !== 'color' ? 'class="regular-text"' : '',
+						$field['id'],
+						$field['id'],
+						$field['type'],
+						$db_value
+					);
+			}
+			$output .= $this->row_format( $label, $input );
+		}
+		echo '<table class="form-table"><tbody>' . $output . '</tbody></table>';
+	}
+
+	/**
+	 * Generates the HTML for table rows.
+	 */
+	public function row_format( $label, $input ) {
+		return sprintf(
+			'<tr><th scope="row">%s</th><td>%s</td></tr>',
+			$label,
+			$input
+		);
+	}
+	/**
+	 * Hooks into WordPress' save_post function
+	 */
+	public function save_post( $post_id ) {
+		if ( ! isset( $_POST['mkd_portfolio_video_nonce'] ) )
+			return $post_id;
+
+		$nonce = $_POST['mkd_portfolio_video_nonce'];
+		if ( !wp_verify_nonce( $nonce, 'mkd_portfolio_video_data' ) )
+			return $post_id;
+
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
+			return $post_id;
+
+		foreach ( $this->fields as $field ) {
+			if ( isset( $_POST[ $field['id'] ] ) ) {
+				switch ( $field['type'] ) {
+					case 'email':
+						$_POST[ $field['id'] ] = sanitize_email( $_POST[ $field['id'] ] );
+						break;
+					case 'text':
+						$_POST[ $field['id'] ] = sanitize_text_field( $_POST[ $field['id'] ] );
+						break;
+				}
+				update_post_meta( $post_id, 'mkd_portfolio_video_' . $field['id'], $_POST[ $field['id'] ] );
+			} else if ( $field['type'] === 'checkbox' ) {
+				update_post_meta( $post_id, 'mkd_portfolio_video_' . $field['id'], '0' );
+			}
+		}
+	}
+}
+new Rational_Meta_Box;
+
+?>
