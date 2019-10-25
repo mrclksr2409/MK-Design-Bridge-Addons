@@ -15,11 +15,13 @@ function create_mkdblogbox_shortcode($atts) {
 		'mkd_blog_box'
 	);
 	// Attributes in var
-	$order_by = $atts['order_by'];
+	$orderby = $atts['orderby'];
 	$order = $atts['order'];
 	$number = $atts['number'];
 	$number_of_blog = $atts['number_of_blog'];
 	$category = $atts['category'];
+	$post_status = $atts['post_status'];
+
 
 
   $query = new WP_Query(array(
@@ -27,7 +29,7 @@ function create_mkdblogbox_shortcode($atts) {
   	'post_status' => array('publish'),
   	'posts_per_page' => $number,
   	'order' => $order,
-  	'orderby' => $order_by,
+  	'orderby' => $orderby,
   	'cat' => $category,
   ));
 
@@ -109,12 +111,26 @@ function mkdblogbox_integrateWithVC() {
 				'holder' => 'div',
 				'class' => '',
 				'admin_label' => false,
-				'heading' => __( 'Order By', 'mkd-text' ),
-				'param_name' => 'order_by',
+				'heading' => __( 'Category', 'mkd-text' ),
+				'param_name' => 'category',
+        "value" => $categories_array,
+			),
+			array(
+				'type' => 'dropdown',
+				'holder' => 'div',
+				'class' => '',
+				'admin_label' => false,
+				'heading' => __( 'Post Status', 'mkd-text' ),
+				'param_name' => 'post_status',
         'value' => array(
-          '' => '',
-          'Title' => 'title',
-          'Date' => 'date',
+          'Publish' => 'publish',
+          'Future' => 'future',
+          'Draft' => 'draft',
+          'Pending' => 'pending',
+          'Private' => 'private',
+          'Trash' => 'trash',
+          'Auto-Draft' => 'auto-draft',
+          'Inherit' => 'inherit',
         ),
 			),
 			array(
@@ -122,14 +138,29 @@ function mkdblogbox_integrateWithVC() {
 				'holder' => 'div',
 				'class' => '',
 				'admin_label' => false,
-				'heading' => __( 'Order', 'mkd-text' ),
+				'heading' => __( 'Sortierung', 'mkd-text' ),
 				'param_name' => 'order',
         'value' => array(
-          '' => '',
-          'ASC' => 'ASC',
-          'DESC' => 'DESC',
+          'aufsteigend' => 'ASC',
+          'absteigend' => 'DESC',
         ),
-      ),
+			),
+			array(
+				'type' => 'dropdown',
+				'holder' => 'div',
+				'class' => '',
+				'admin_label' => false,
+				'heading' => __( 'Sortiert nach', 'mkd-text' ),
+				'param_name' => 'orderby',
+        'value' => array(
+          'none' => 'none',
+          'ID' => 'ID',
+          'author' => 'author',
+          'title' => 'title',
+          'name' => 'name',
+          'date' => 'date',
+          'menu_order' => 'menu_order',
+        ),
 			array(
 				'type' => 'textfield',
 				'holder' => 'div',
@@ -153,15 +184,6 @@ function mkdblogbox_integrateWithVC() {
           '5 Spalten' => 'vc_col-sm-1/5',
           '6 Spalten' => 'vc_col-sm-2',
         ),
-			),
-			array(
-				'type' => 'dropdown',
-				'holder' => 'div',
-				'class' => '',
-				'admin_label' => false,
-				'heading' => __( 'Category', 'mkd-text' ),
-				'param_name' => 'category',
-        "value" => $categories_array,
 			),
 		)
 	) );
