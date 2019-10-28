@@ -99,10 +99,11 @@ function mkdblogbox_integrateWithVC() {
       $categories_array[$category->name] = $category->term_id;
   }
 
-	vc_map( array(
+vc_map( 
+	array(
 		'name' => __( 'Blog Box', 'mkd-text' ),
 		'base' => 'mkd_blog_box',
-    'icon' => plugins_url( 'images/favicon.jpg', dirname(__FILE__) ),
+		'icon' => plugins_url( 'images/favicon.jpg', dirname(__FILE__) ),
 		'show_settings_on_create' => true,
 		'category' => __( 'MK Design', 'mkd-text'),
 		'params' => array(
@@ -113,78 +114,80 @@ function mkdblogbox_integrateWithVC() {
 				'admin_label' => false,
 				'heading' => __( 'Category', 'mkd-text' ),
 				'param_name' => 'category',
-        "value" => $categories_array,
-			),
-			array(
-				'type' => 'dropdown',
-				'holder' => 'div',
-				'class' => '',
-				'admin_label' => false,
-				'heading' => __( 'Post Status', 'mkd-text' ),
-				'param_name' => 'post_status',
-        'value' => array(
-          'Publish' => 'publish',
-          'Future' => 'future',
-          'Draft' => 'draft',
-          'Pending' => 'pending',
-          'Private' => 'private',
-          'Trash' => 'trash',
-          'Auto-Draft' => 'auto-draft',
-          'Inherit' => 'inherit',
-        ),
-			),
-			array(
-				'type' => 'dropdown',
-				'holder' => 'div',
-				'class' => '',
-				'admin_label' => false,
-				'heading' => __( 'Sortierung', 'mkd-text' ),
-				'param_name' => 'order',
-        'value' => array(
-          'aufsteigend' => 'ASC',
-          'absteigend' => 'DESC',
-        ),
-			),
-			array(
-				'type' => 'dropdown',
-				'holder' => 'div',
-				'class' => '',
-				'admin_label' => false,
-				'heading' => __( 'Sortiert nach', 'mkd-text' ),
-				'param_name' => 'orderby',
-        'value' => array(
-          'none' => 'none',
-          'ID' => 'ID',
-          'author' => 'author',
-          'title' => 'title',
-          'name' => 'name',
-          'date' => 'date',
-          'menu_order' => 'menu_order',
-        ),
-			array(
-				'type' => 'textfield',
-				'holder' => 'div',
-				'class' => '',
-				'admin_label' => false,
-				'heading' => __( 'Number', 'mkd-text' ),
-				'param_name' => 'number',
-				'description' => __( 'Number of blog posts on page (-1 is all)', 'mkd-text' )
-			),
-			array(
-				'type' => 'dropdown',
-				'holder' => 'div',
-				'class' => '',
-				'admin_label' => false,
-				'heading' => __( 'Number of Blog Posts Shown', 'mkd-text' ),
-				'param_name' => 'number_of_blog',
-        'value' => array(
-          '' => '',
-          '3 Spalten' => 'vc_col-sm-4',
-          '4 Spalten' => 'vc_col-sm-3',
-          '5 Spalten' => 'vc_col-sm-1/5',
-          '6 Spalten' => 'vc_col-sm-2',
-        ),
+				"value" => $categories_array,
+				),
+				array(
+					'type' => 'dropdown',
+					'holder' => 'div',
+					'class' => '',
+					'admin_label' => false,
+					'heading' => __( 'Post Status', 'mkd-text' ),
+					'param_name' => 'post_status',
+					'value' => array(
+						'Publish' => 'publish',
+						'Future' => 'future',
+						'Draft' => 'draft',
+						'Pending' => 'pending',
+						'Private' => 'private',
+						'Trash' => 'trash',
+						'Auto-Draft' => 'auto-draft',
+						'Inherit' => 'inherit',
+					),
+				),
+				array(
+					'type' => 'dropdown',
+					'holder' => 'div',
+					'class' => '',
+					'admin_label' => false,
+					'heading' => __( 'Sortierung', 'mkd-text' ),
+					'param_name' => 'order',
+					'value' => array(
+						'aufsteigend' => 'ASC',
+						'absteigend' => 'DESC',
+					),
+				),
+				array(
+					'type' => 'dropdown',
+					'holder' => 'div',
+					'class' => '',
+					'admin_label' => false,
+					'heading' => __( 'Sortiert nach', 'mkd-text' ),
+					'param_name' => 'orderby',
+					'value' => array(
+						'none' => 'none',
+						'ID' => 'ID',
+						'author' => 'author',
+						'title' => 'title',
+						'name' => 'name',
+						'date' => 'date',
+						'menu_order' => 'menu_order',
+					),
+				array(
+					'type' => 'textfield',
+					'holder' => 'div',
+					'class' => '',
+					'admin_label' => false,
+					'heading' => __( 'Number', 'mkd-text' ),
+					'param_name' => 'number',
+					'description' => __( 'Number of blog posts on page (-1 is all)', 'mkd-text' )
+				),
+				array(
+					'type' => 'dropdown',
+					'holder' => 'div',
+					'class' => '',
+					'admin_label' => false,
+					'heading' => __( 'Number of Blog Posts Shown', 'mkd-text' ),
+					'param_name' => 'number_of_blog',
+					'value' => array(
+						'' => '',
+						'3 Spalten' => 'vc_col-sm-4',
+						'4 Spalten' => 'vc_col-sm-3',
+						'5 Spalten' => 'vc_col-sm-1/5',
+						'6 Spalten' => 'vc_col-sm-2',
+					),
+				),
 			),
 		)
-	) );
+	)
+);
 }
