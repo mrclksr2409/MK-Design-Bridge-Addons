@@ -30,9 +30,9 @@ $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
 );
 
 // Register the style like this for a plugin:
-function wptuts_styles_with_the_lot()
+function mkd_addons_styles()
 {
     wp_register_style( 'custom-style', plugins_url( '/css/mkd-addons.css', __FILE__ ), array(), '1', 'all' );
     wp_enqueue_style( 'custom-style' );
 }
-add_action( 'wp_enqueue_scripts', 'wptuts_styles_with_the_lot' );
+add_action( 'wp_enqueue_scripts', 'mkd_addons_styles' );
