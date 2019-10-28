@@ -5,134 +5,78 @@ function create_mkd_box_shortcode($atts) {
 	// Attributes
 	$atts = shortcode_atts(
 		array(
-			'beitragsbild' => '1',
-			'titel' => '1',
-			'ueberschrift' => 'h1',
-			'textauszug' => '1',
-			'more_button' => '1',
-			'button_text' => 'weiterlesen',
-			'button_icon' => '',
+			'value_beitragsbild' => '',
+			'value_ueberschrift' => '',
+			'value_textauszug' => '',
+			'value_link' => '',
+			'show_beitragsbild' => '1',
+			'show_ueberschrift' => '1',
+			'tag_ueberschrift' => '',
+			'show_textauszug' => '1',
+			'show_button' => '1',
+			'value_button' => '',
+			'icon_button' => '',
 		),
 		$atts,
 		'mkd_box'
 	);
 	// Attributes in var
-	$beitragsbild = $atts['beitragsbild'];
-	$titel = $atts['titel'];
-	$ueberschrift = $atts['ueberschrift'];
-	$textauszug = $atts['textauszug'];
-	$more_button = $atts['more_button'];
-	$button_text = $atts['button_text'];
-	$button_icon = $atts['button_icon'];
+	$value_beitragsbild = $atts['value_beitragsbild'];
+	$value_ueberschrift = $atts['value_ueberschrift'];
+	$value_textauszug = $atts['value_textauszug'];
+	$value_link = vc_build_link($atts['value_link']);
+	$show_beitragsbild = $atts['show_beitragsbild'];
+	$show_ueberschrift = $atts['show_ueberschrift'];
+	$tag_ueberschrift = $atts['tag_ueberschrift'];
+	$show_textauszug = $atts['show_textauszug'];
+	$show_button = $atts['show_button'];
+	$value_button = $atts['value_button'];
+	$icon_button = $atts['icon_button'];
 
 
-
-
-
-	$link = vc_build_link($atts['link']);
-
-	$build_link = ' href="'.$link['url'].'"';
-	if($link['target'] != "")
+	if($icon_button != "")
 	{
-		$build_link .= ' target="'.$link['target'].'"';
-	}
-	if($link['title'] != "")
-	{
-		$build_link .= ' title="'.$link['title'].'"';
-	}
-	if($link['rel'] != "")
-	{
-		$build_link .= ' rel="'.$link['rel'].'"';
-	}
-
-
-	if($button_icon != "")
-	{
-		$icon = ' <i class="qode_icon_font_awesome fa '.$button_icon.' qode_button_icon_element"></i>';
+		$icon = ' <i class="qode_icon_font_awesome fa '.$icon_button.' qode_button_icon_element"></i>';
 	}
 
 	// Output Code
-	/*
-	$output .= '<div class="mkd_box wpb_column vc_column_container vc_col-sm-12">';
-	$output .= '<div class="vc_column-inner">';
-	$output .= '<div class="wpb_wrapper">';
-
-	if($beitragsbild == "1")
+	$output = '<div class="mkd_box wpb_column vc_column_container vc_col-sm-12">';
+	$output .= '	<div class="vc_column-inner">';
+	$output .= '		<div class="wpb_wrapper">';
+	if($show_beitragsbild == "1")
 	{
-    $output .= '<div class="wpb_single_image wpb_content_element vc_align_left">';
-    $output .= '<div class="wpb_wrapper">';
-    $output .= '<a'.$build_link.'>';
-    $output .= '<div class="vc_single_image-wrapper vc_box_border_grey" style="background-image: url('.get_the_post_thumbnail_url( $post_id ).')">';
-    $output .= '</div>';
-    $output .= '</a>';
-    $output .= '</div>';
-    $output .= '</div>';
+    $output .= '			<div class="wpb_single_image wpb_content_element vc_align_left">';
+    $output .= '				<div class="wpb_wrapper">';
+    $output .= '					<a href="'.$value_link['url'].'" title="'.$value_link['title'].'" target="'.$value_link['target'].'">';
+    $output .= '						<div class="vc_single_image-wrapper vc_box_border_grey" style="background-image: url('.wp_get_attachment_url($value_beitragsbild).')"></div>';
+    $output .= '					</a>';
+    $output .= '				</div>';
+    $output .= '			</div>';
 	}
-	if($titel == "1")
+	if($show_ueberschrift == "1")
 	{
-    $output .= '<div class="wpb_text_column wpb_content_element">';
-    $output .= '<div class="wpb_wrapper">';
-    $output .= '<a'.$build_link.'><' . $ueberschrift . '>' . get_the_title($post_id) . '</' . $ueberschrift . '></a>';
-    $output .= '</div>';
-    $output .= '</div>';
-	}
-  if($textauszug == "1")
-	{
-		$output .= '<div class="wpb_text_column wpb_content_element">';
-    $output .= '<div class="wpb_wrapper">';
-		$output .= '<p>'.get_the_excerpt( $post_id ).'</p>';
-		$output .= '</div>';
-    $output .= '</div>';
-	}
-	if($more_button == "1")
-	{
-  	$output .= '<a itemprop="url"'.$build_link.' class="qbutton  small default">'.$button_text.''.$icon.'</a>';
+		$output .= '			<div class="wpb_text_column wpb_content_element">';
+		$output .= '				<div class="wpb_wrapper">';
+		$output .= '					<a href="'.$value_link['url'].'" title="'.$value_link['title'].'" target="'.$value_link['target'].'"><' . $tag_ueberschrift . '>' . $value_ueberschrift . '</' . $tag_ueberschrift . '></a>';
+		$output .= '				</div>';
+		$output .= '			</div>';
 	}
 
+	if($show_textauszug == "1")
+	{
+		$output .= '			<div class="wpb_text_column wpb_content_element ">';
+		$output .= '				<div class="wpb_wrapper">';
+		$output .= '					<p>'.$value_textauszug.'</p>';
+		$output .= '				</div>';
+		$output .= '			</div>';
+	}
+	if($show_button == "1")
+	{
+		$output .= '		<a href="'.$value_link['url'].'" title="'.$value_link['title'].'" target="'.$value_link['target'].'" itemprop="url" class="qbutton  small default">'.$value_button.''.$icon.'</a>';
+	}
+	$output .= '		</div>';
+	$output .= '	</div>';
 	$output .= '</div>';
-  $output .= '</div>';
-  $output .= '</div>';*/
-
-
-
-	$output = '<div class="mkd_box wpb_column vc_column_container vc_col-sm-12 vc_col-has-fill">';
-	$output .= '<div class="vc_column-inner">';
-	$output .= '<div class="wpb_wrapper">';
-	if($beitragsbild == "1")
-	{
-    $output .= '<div class="wpb_single_image wpb_content_element vc_align_left">';
-    $output .= '<div class="wpb_wrapper">';
-    $output .= '<a'.$build_link.'>';
-    $output .= '<div class="vc_single_image-wrapper vc_box_border_grey" style="background-image: url('.get_the_post_thumbnail_url( $post_id ).')">';
-    $output .= '</div>';
-    $output .= '</a>';
-    $output .= '</div>';
-    $output .= '</div>';
-	}
-	if($titel == "1")
-	{
-    $output .= '<div class="wpb_text_column wpb_content_element">';
-    $output .= '<div class="wpb_wrapper">';
-    $output .= '<a'.$build_link.'><' . $ueberschrift . '>' . get_the_title($post_id) . '</' . $ueberschrift . '></a>';
-    $output .= '</div>';
-    $output .= '</div>';
-	}
-	if($textauszug == "1")
-	{
-		$output .= '<div class="wpb_text_column wpb_content_element">';
-    $output .= '<div class="wpb_wrapper">';
-		$output .= '<p>'.get_the_excerpt( $post_id ).'</p>';
-		$output .= '</div>';
-    $output .= '</div>';
-	}
-	if($more_button == "1")
-	{
-  	$output .= '<a itemprop="url"'.$build_link.' class="qbutton  small default">'.$button_text.''.$icon.'</a>';
-	}
-	$output .= '</div>';
-	$output .= '</div>';
-	$output .= '</div>';
-
 
 	return $output;
 }
@@ -150,11 +94,20 @@ function box_integrateWithVC() {
 		'category' => __( 'MK Design', 'mkd-text'),
 		'params' => array(
 			array(
-				'type' => 'textfield',
+				'type' => 'attach_image',
 				'class' => '',
 				'admin_label' => false,
-				'heading' => __( 'Titel', 'mkd-text' ),
-				'param_name' => 'titel_value',
+				'heading' => __( 'Beitragsbild', 'mkd-text' ),
+				'param_name' => 'value_beitragsbild',
+				'group' => __( 'Allgemeine Einstellungen', 'mkd-text' ),
+			),
+			array(
+				'type' => 'textfield',
+				'holder' => 'div',
+				'class' => '',
+				'admin_label' => false,
+				'heading' => __( 'Überschrift', 'mkd-text' ),
+				'param_name' => 'value_ueberschrift',
 				'group' => __( 'Allgemeine Einstellungen', 'mkd-text' ),
 			),
 			array(
@@ -162,7 +115,7 @@ function box_integrateWithVC() {
 				'class' => '',
 				'admin_label' => false,
 				'heading' => __( 'Textauszug', 'mkd-text' ),
-				'param_name' => 'textauszug_value',
+				'param_name' => 'value_textauszug',
 				'group' => __( 'Allgemeine Einstellungen', 'mkd-text' ),
 			),
 			array(
@@ -170,7 +123,7 @@ function box_integrateWithVC() {
 				'class' => '',
 				'admin_label' => false,
 				'heading' => __( 'Link', 'mkd-text' ),
-				'param_name' => 'link',
+				'param_name' => 'value_link',
 				'group' => __( 'Allgemeine Einstellungen', 'mkd-text' ),
 			),
 			array(
@@ -178,23 +131,11 @@ function box_integrateWithVC() {
 				'class' => '',
 				'admin_label' => false,
 				'heading' => __( 'Beitragsbild', 'mkd-text' ),
-				'param_name' => 'beitragsbild',
-        'value' => array(
+				'value' => array(
 					'anzeigen' => '1',
 					'nicht anzeigen' => '0',
         ),
-				'group' => __( 'Designeinstellungen', 'mkd-text' ),
-			),
-			array(
-				'type' => 'dropdown',
-				'class' => '',
-				'admin_label' => false,
-				'heading' => __( 'Titel', 'mkd-text' ),
-				'param_name' => 'titel',
-        'value' => array(
-					'anzeigen' => '1',
-					'nicht anzeigen' => '0',
-        ),
+				'param_name' => 'show_beitragsbild',
 				'group' => __( 'Designeinstellungen', 'mkd-text' ),
 			),
 			array(
@@ -202,8 +143,19 @@ function box_integrateWithVC() {
 				'class' => '',
 				'admin_label' => false,
 				'heading' => __( 'Überschrift', 'mkd-text' ),
-				'param_name' => 'ueberschrift',
-        'value' => array(
+				'value' => array(
+					'anzeigen' => '1',
+					'nicht anzeigen' => '0',
+        ),
+				'param_name' => 'show_ueberschrift',
+				'group' => __( 'Designeinstellungen', 'mkd-text' ),
+			),
+			array(
+				'type' => 'dropdown',
+				'class' => '',
+				'admin_label' => false,
+				'heading' => __( 'Überschrift', 'mkd-text' ),
+				'value' => array(
 					'Überschrift 1' => 'h1',
 					'Überschrift 2' => 'h2',
 					'Überschrift 3' => 'h3',
@@ -211,6 +163,7 @@ function box_integrateWithVC() {
 					'Überschrift 5' => 'h5',
 					'Überschrift 6' => 'h6',
         ),
+				'param_name' => 'tag_ueberschrift',
 				'group' => __( 'Designeinstellungen', 'mkd-text' ),
 			),
 			array(
@@ -218,11 +171,11 @@ function box_integrateWithVC() {
 				'class' => '',
 				'admin_label' => false,
 				'heading' => __( 'Textauszug', 'mkd-text' ),
-				'param_name' => 'textauszug',
-        'value' => array(
+				'value' => array(
 					'anzeigen' => '1',
 					'nicht anzeigen' => '0',
         ),
+				'param_name' => 'show_textauszug',
 				'group' => __( 'Designeinstellungen', 'mkd-text' ),
 			),
 			array(
@@ -230,30 +183,29 @@ function box_integrateWithVC() {
 				'class' => '',
 				'admin_label' => false,
 				'heading' => __( 'Button', 'mkd-text' ),
-				'param_name' => 'more_button',
-        'value' => array(
+				'value' => array(
 					'anzeigen' => '1',
 					'nicht anzeigen' => '0',
         ),
+				'param_name' => 'show_button',
 				'group' => __( 'Designeinstellungen', 'mkd-text' ),
 			),
 			array(
 				'type' => 'textfield',
 				'class' => '',
 				'admin_label' => false,
-				'heading' => __( 'Text', 'mkd-text' ),
-				'param_name' => 'button_text',
-				"value" => __( "weiterlesen", "mkd-text" ),
+				'heading' => __( 'Button Text', 'mkd-text' ),
+				'param_name' => 'value_button',
 				'group' => __( 'Designeinstellungen', 'mkd-text' ),
 			),
 			array(
 				'type' => 'textfield',
 				'class' => '',
 				'admin_label' => false,
-				'heading' => __( 'Icon', 'mkd-text' ),
-				'param_name' => 'button_icon',
+				'heading' => __( 'Button Icon', 'mkd-text' ),
+				'param_name' => 'icon_button',
 				'group' => __( 'Designeinstellungen', 'mkd-text' ),
 			),
-		)
-	) );
+		))
+	);
 }
