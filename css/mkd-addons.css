@@ -6,11 +6,8 @@ flexbox
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////
 mkd_box
 /////////////////////////////////////////////////////////////////////////////////////////////////////*/
-.mkd_box {
-  height: 100%;
-}
 
-.mkd_box .section_inner_margin {
+.section_inner_margin {
   display: -webkit-flex;
   display: -ms-flex;
   display: flex;
@@ -19,13 +16,17 @@ mkd_box
   flex-wrap: wrap;
 }
 
-.mkd_box .section_inner_margin>.wpb_column {
+.section_inner_margin > .wpb_column {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.mkd_box .vc_column-inner {
+.section_inner_margin > .wpb_column > .vc_column-inner > .wpb_wrapper {
+  height: 100%;
+}
+
+.mkd_box {
   height: 100%;
 }
 
