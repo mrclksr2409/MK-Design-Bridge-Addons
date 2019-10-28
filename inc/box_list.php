@@ -57,7 +57,7 @@ function create_box_list_shortcode($atts) {
   ));
 
   // Output Code
-	$output = '<div class="mkd_box_list vc_row wpb_row section vc_row-fluid grid_section" style=" text-align:left;">';
+	$output = '<div class="mkd_box_list vc_row wpb_row section vc_row-fluid grid_section flexbox" style=" text-align:left;">';
 	$output .= '<div class=" section_inner clearfix">';
 	$output .= '<div class="section_inner_margin clearfix">';
 

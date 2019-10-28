@@ -1,8 +1,8 @@
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////
 flexbox
 /////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-.flexbox .section_inner_margin {
+.flexbox .section_inner_margin,
+.flexbox .full_section_inner {
   display: -webkit-flex;
   display: -ms-flex;
   display: flex;
@@ -11,20 +11,21 @@ flexbox
   flex-wrap: wrap;
 }
 
-.flexbox .section_inner_margin > .wpb_column {
+.flexbox .section_inner_margin>.wpb_column,
+.flexbox .full_section_inner>.wpb_column {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.flexbox .section_inner_margin > .wpb_column > .vc_column-inner > .wpb_wrapper {
+.flexbox .section_inner_margin>.wpb_column>.vc_column-inner>.wpb_wrapper,
+.flexbox .full_section_inner>.wpb_column>.vc_column-inner>.wpb_wrapper {
   height: 100%;
 }
 
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////
 mkd_box
 /////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
 .mkd_box {
   height: 100%;
 }
@@ -76,25 +77,6 @@ mkd_box_list
   height: 100%;
 }
 
-.mkd_box_list .section_inner_margin {
-  display: -webkit-flex;
-  display: -ms-flex;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-}
-
-.mkd_box_list .section_inner_margin>.wpb_column {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.mkd_box_list .vc_column-inner {
-  height: 100%;
-}
-
 .mkd_box_list .vc_column-inner>.wpb_wrapper {
   background: rgb(255, 255, 255);
   -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
@@ -132,7 +114,6 @@ mkd_box_list
   margin-left: 20px;
   margin-right: 20px;
 }
-
 
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////
 mkd_icon_text
@@ -210,11 +191,9 @@ mkd_portfolio_list
   border: solid 1px;
 }
 
-
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////
 mkd_blog_overlay_box
 /////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
 .mkd_blog_overlay_box {}
 
 .mkd_blog_overlay_box .mkd_elements_item_textbox {
@@ -240,7 +219,6 @@ mkd_blog_overlay_box
   -moz-box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.25);
   box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.25);
 }
-
 
 .mkd_blog_overlay_box .mkd_elements_item_textbox.left {
   left: 15px !important;

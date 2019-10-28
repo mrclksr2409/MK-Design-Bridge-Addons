@@ -8,15 +8,16 @@ Author URI: https://www.your-own-design.de/
 */
 
 // fertig überarbeitet
+include_once('inc/box.php');
 include_once('inc/box_list.php');
+
+include_once('inc/overlay_box.php');
 
 
 
 //include_once('inc/icon_text.php');
 
-include_once('inc/box.php');
 
-//include_once('inc/blog_overlay_box.php');
 
 //include_once('inc/portfolio_box.php');
 //include_once('inc/portfolio_widget.php');

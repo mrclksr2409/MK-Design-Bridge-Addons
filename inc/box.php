@@ -11,10 +11,10 @@ function create_mkd_box_shortcode($atts) {
 			'value_link' => '',
 			'show_beitragsbild' => '1',
 			'show_ueberschrift' => '1',
-			'tag_ueberschrift' => '',
+			'tag_ueberschrift' => 'h1',
 			'show_textauszug' => '1',
 			'show_button' => '1',
-			'value_button' => '',
+			'value_button' => __( 'weiterlesen', 'mkd-text' ),
 			'icon_button' => '',
 		),
 		$atts,
@@ -32,7 +32,6 @@ function create_mkd_box_shortcode($atts) {
 	$show_button = $atts['show_button'];
 	$value_button = $atts['value_button'];
 	$icon_button = $atts['icon_button'];
-
 
 	if($icon_button != "")
 	{
@@ -87,7 +86,7 @@ add_action( 'vc_before_init', 'box_integrateWithVC' );
 function box_integrateWithVC() {
 	vc_map( array(
 		'name' => __( 'Box', 'mkd-text' ),
-		'description' => __( 'Zeigt in einer Box eine Liste aller Beträge an.', 'mkd-text' ),
+		'description' => __( 'Zeigt in einer Box eine verlinkte Seite an.', 'mkd-text' ),
 		'base' => 'mkd_box',
     'icon' => plugins_url( 'images/favicon.jpg', dirname(__FILE__) ),
 		'show_settings_on_create' => true,
@@ -195,6 +194,7 @@ function box_integrateWithVC() {
 				'class' => '',
 				'admin_label' => false,
 				'heading' => __( 'Button Text', 'mkd-text' ),
+				'value' => __( 'weiterlesen', 'mkd-text' ),
 				'param_name' => 'value_button',
 				'group' => __( 'Designeinstellungen', 'mkd-text' ),
 			),
