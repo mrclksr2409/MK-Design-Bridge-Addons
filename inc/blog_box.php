@@ -99,7 +99,7 @@ function mkdblogbox_integrateWithVC() {
       $categories_array[$category->name] = $category->term_id;
   }
 
-vc_map( 
+vc_map(
 	array(
 		'name' => __( 'Blog Box', 'mkd-text' ),
 		'base' => 'mkd_blog_box',

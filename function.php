@@ -1,25 +1,29 @@
 <?php
 /*
 Plugin Name: MK Design Bridge Addons
-Description: Fügt einig Erweiterungen zur Bridge hinzu.
+Description: Fügt einig erweiterungen zur Bridge hinzu.
 Version: 0.3
 Author: Marcel Kaiser
 Author URI: https://www.your-own-design.de/
 */
 
-include_once('inc/icon_text.php');
+// fertig überarbeitet
+include_once('inc/box_list.php');
 
-include_once('inc/page_box.php');
 
-include_once('inc/blog_box.php');
-include_once('inc/blog_overlay_box.php');
 
-include_once('inc/portfolio_box.php');
-include_once('inc/portfolio_widget.php');
-include_once('inc/portfolio_list.php');
+//include_once('inc/icon_text.php');
 
-include_once('inc/locations.php');
-include_once('inc/locations-rest-api.php');
+include_once('inc/box.php');
+
+//include_once('inc/blog_overlay_box.php');
+
+//include_once('inc/portfolio_box.php');
+//include_once('inc/portfolio_widget.php');
+//include_once('inc/portfolio_list.php');
+
+//include_once('inc/locations.php');
+//include_once('inc/locations-rest-api.php');
 
 // update plugin:
 require 'plugin-update-checker/plugin-update-checker.php';

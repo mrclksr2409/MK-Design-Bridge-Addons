@@ -1,60 +1,136 @@
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////
 flexbox
 /////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////
-mkd_page_box
+mkd_box
 /////////////////////////////////////////////////////////////////////////////////////////////////////*/
-.mkd_page_box {
+.mkd_box {
   height: 100%;
 }
 
-.mkd_page_box>.vc_column-inner>.wpb_wrapper {
-    margin-bottom: 72px;
+.mkd_box .section_inner_margin {
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
-.mkd_page_box .vc_column-inner {
-  padding: 0px !important;
-  margin: 0px;
+.mkd_box .section_inner_margin>.wpb_column {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.mkd_box .vc_column-inner {
+  height: 100%;
+}
+
+.mkd_box .vc_column-inner>.wpb_wrapper {
   background: rgb(255, 255, 255);
   -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
   -webkit-transition: all .5s ease;
   transition: all .5s ease;
+  margin-bottom: 25px;
+  height: 100%;
+  position: relative;
 }
 
-.mkd_page_box .vc_column-inner:hover {
+.mkd_box .vc_column-inner>.wpb_wrapper:hover {
   -webkit-box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.25);
   box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.25);
 }
 
-.mkd_page_box .wpb_single_image .vc_single_image-wrapper {
+.mkd_box .vc_column-inner .wpb_wrapper .wpb_single_image .vc_single_image-wrapper {
   padding-bottom: 65%;
   min-width: 100%;
   background-size: cover;
   background-position: center center;
+  background-repeat: no-repeat;
 }
 
-.mkd_page_box .wpb_text_column {
+.mkd_box .vc_column-inner .wpb_wrapper .wpb_text_column {
   margin-top: 20px;
   margin-left: 20px;
   margin-right: 20px;
 }
 
-.mkd_page_box .wpb_text_column span {
-  color: #004f9f;
-  font-size: 20px;
-  font-weight: 400;
-  letter-spacing: 0px;
-  text-transform: none;
+.mkd_box .vc_column-inner .wpb_wrapper .qbutton {
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
-.mkd_page_box .qbutton {
-  left: 20px;
-  bottom: 20px;
-  position: absolute;
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////
+mkd_box_list
+/////////////////////////////////////////////////////////////////////////////////////////////////////*/
+.mkd_box_list {
+  height: 100%;
 }
+
+.mkd_box_list .section_inner_margin {
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.mkd_box_list .section_inner_margin>.wpb_column {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.mkd_box_list .vc_column-inner {
+  height: 100%;
+}
+
+.mkd_box_list .vc_column-inner>.wpb_wrapper {
+  background: rgb(255, 255, 255);
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  -webkit-transition: all .5s ease;
+  transition: all .5s ease;
+  margin-bottom: 25px;
+  height: 100%;
+  position: relative;
+}
+
+.mkd_box_list .vc_column-inner>.wpb_wrapper:hover {
+  -webkit-box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.25);
+}
+
+.mkd_box_list .vc_column-inner .wpb_wrapper .wpb_single_image .vc_single_image-wrapper {
+  padding-bottom: 65%;
+  min-width: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.mkd_box_list .vc_column-inner .wpb_wrapper .wpb_text_column {
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.mkd_box_list .vc_column-inner .wpb_wrapper .qbutton {
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
 
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////
 mkd_icon_text
@@ -132,85 +208,6 @@ mkd_portfolio_list
   border: solid 1px;
 }
 
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////
-mkd_post_box
-/////////////////////////////////////////////////////////////////////////////////////////////////////*/
-.mkd_blog_box {
-  height: 100%;
-}
-
-.mkd_blog_box .section_inner_margin .section_inner_margin {
-  display: -webkit-flex;
-  display: -ms-flex;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-}
-
-.mkd_blog_box .wpb_column .wpb_column {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.mkd_blog_box .wpb_wrapper .wpb_wrapper {
-  height: 100%;
-}
-
-.mkd_blog_box .vc_column-inner .vc_column-inner>.wpb_wrapper {
-  margin-bottom: 25px;
-  padding-bottom: 5px;
-}
-
-.mkd_blog_box .vc_column-inner .vc_column-inner {
-  padding: 0px !important;
-  margin: 0px;
-  background: rgb(255, 255, 255);
-  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-  -webkit-transition: all .5s ease;
-  transition: all .5s ease;
-}
-
-.mkd_blog_box .vc_column-inner .vc_column-inner:hover {
-  -webkit-box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.25);
-  -moz-box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.25);
-  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.25);
-}
-
-.mkd_blog_box .wpb_single_image {
-  margin-bottom: 20px !important;
-}
-
-.mkd_blog_box .wpb_single_image .vc_single_image-wrapper {
-  padding-bottom: 65%;
-  min-width: 100%;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-}
-
-.mkd_blog_box .wpb_text_column {
-  margin-bottom: 35px !important;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
-.mkd_blog_box .wpb_text_column span {
-  color: #004f9f;
-  font-size: 20px;
-  font-weight: 400;
-  letter-spacing: 0px;
-  text-transform: none;
-}
-
-.mkd_blog_box .qbutton {
-  left: 20px;
-  bottom: 20px;
-  position: absolute;
-}
 
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////
 mkd_blog_overlay_box
