@@ -15,15 +15,15 @@ include_once('inc/overlay_box.php');
 
 
 
-//include_once('inc/icon_text.php');
+include_once('inc/icon_text.php');
 
 
 
-//include_once('inc/portfolio_box.php');
+include_once('inc/portfolio_box.php');
 //include_once('inc/portfolio_widget.php');
 //include_once('inc/portfolio_list.php');
 
-//include_once('inc/locations.php');
+include_once('inc/locations.php');
 //include_once('inc/locations-rest-api.php');
 
 // update plugin:

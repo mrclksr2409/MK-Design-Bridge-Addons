@@ -148,9 +148,9 @@ function create_mkdportfoliobox_shortcode($atts) {
     $output .= '<span class="empty_space_image"></span>';
     $output .= '</span>';
     $output .= '</div>';
-    if(isset($video['url']))
+		if(isset($video['url']))
     {
-      $output .= '<a itemprop="url" href="'.$video['url'].'" target="'.$video['target'].'" alt="'.$video['title'].'" title="'.$video['title'].'" rel="'.$video['rel'].'" data-hover-background-color="#ffffff" data-hover-border-color="#303030" data-hover-color="#000000" class="qbutton  default" style="color: #ffffff; border-color: #f28c19; background-color: #f28c19;">Video<i class="qode_icon_font_awesome fa fa-play qode_button_icon_element" style=""></i></a>';
+      $output .= '<a itemprop="url" href="'.$video['url'].'" target="'.$video['target'].'" alt="'.$video['title'].'" title="'.$video['title'].'" rel="'.$video['rel'].'" class="qbutton  small default">Video<i class="qode_icon_font_awesome fa fa-play qode_button_icon_element" style=""></i></a>';
     }
     $output .= '</div>';
     $output .= '</div>';

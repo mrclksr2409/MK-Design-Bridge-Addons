@@ -1,6 +1,6 @@
 <?php
 // Register Custom Post Type Standort
-function create_standort_cpt() {
+function create_standort_mkd() {
 
 	$labels = array(
 		'name' => _x( 'Standorte', 'Post Type General Name', 'mkd-text' ),
@@ -55,7 +55,7 @@ function create_standort_cpt() {
 	register_post_type( 'mkd-locations', $args );
 
 }
-add_action( 'init', 'create_standort_cpt', 0 );
+add_action( 'init', 'create_standort_mkd', 0 );
 
 
 function my_remove_wp_seo_meta_box() {
