@@ -9,6 +9,7 @@ function create_mkd_box_shortcode($atts) {
 			'value_ueberschrift' => '',
 			'value_textauszug' => '',
 			'value_link' => '',
+			'value_link_class' => '',
 			'show_beitragsbild' => '1',
 			'show_ueberschrift' => '1',
 			'tag_ueberschrift' => 'h1',
@@ -25,6 +26,7 @@ function create_mkd_box_shortcode($atts) {
 	$value_ueberschrift = $atts['value_ueberschrift'];
 	$value_textauszug = $atts['value_textauszug'];
 	$value_link = vc_build_link($atts['value_link']);
+	$value_link_class = $atts['value_link_class'];
 	$show_beitragsbild = $atts['show_beitragsbild'];
 	$show_ueberschrift = $atts['show_ueberschrift'];
 	$tag_ueberschrift = $atts['tag_ueberschrift'];
@@ -46,7 +48,7 @@ function create_mkd_box_shortcode($atts) {
 	{
     $output .= '			<div class="wpb_single_image wpb_content_element vc_align_left">';
     $output .= '				<div class="wpb_wrapper">';
-    $output .= '					<a href="'.$value_link['url'].'" title="'.$value_link['title'].'" target="'.$value_link['target'].'">';
+    $output .= '					<a href="'.$value_link['url'].'" title="'.$value_link['title'].'" target="'.$value_link['target'].'" class="'.$value_link_class.'">';
     $output .= '						<div class="vc_single_image-wrapper vc_box_border_grey" style="background-image: url('.wp_get_attachment_url($value_beitragsbild).')"></div>';
     $output .= '					</a>';
     $output .= '				</div>';
@@ -56,7 +58,7 @@ function create_mkd_box_shortcode($atts) {
 	{
 		$output .= '			<div class="wpb_text_column wpb_content_element">';
 		$output .= '				<div class="wpb_wrapper">';
-		$output .= '					<a href="'.$value_link['url'].'" title="'.$value_link['title'].'" target="'.$value_link['target'].'"><' . $tag_ueberschrift . '>' . $value_ueberschrift . '</' . $tag_ueberschrift . '></a>';
+		$output .= '					<a href="'.$value_link['url'].'" title="'.$value_link['title'].'" target="'.$value_link['target'].'" class="'.$value_link_class.'"><' . $tag_ueberschrift . '>' . $value_ueberschrift . '</' . $tag_ueberschrift . '></a>';
 		$output .= '				</div>';
 		$output .= '			</div>';
 	}
@@ -71,7 +73,12 @@ function create_mkd_box_shortcode($atts) {
 	}
 	if($show_button == "1")
 	{
-		$output .= '		<a href="'.$value_link['url'].'" title="'.$value_link['title'].'" target="'.$value_link['target'].'" itemprop="url" class="qbutton  small default">'.$value_button.''.$icon.'</a>';
+		$output .= '		<a href="'.$value_link['url'].'" title="'.$value_link['title'].'" target="'.$value_link['target'].'" itemprop="url" class="qbutton  small default '.$value_link_class.'">'.$value_button.''.$icon.'</a>';
+	}
+
+	if($show_button == "1")
+	{
+		$output .= '		<span class="qbutton  small default">&nbsp;</span>';
 	}
 	$output .= '		</div>';
 	$output .= '	</div>';
@@ -123,6 +130,14 @@ function box_integrateWithVC() {
 				'admin_label' => false,
 				'heading' => __( 'Link', 'mkd-text' ),
 				'param_name' => 'value_link',
+				'group' => __( 'Allgemeine Einstellungen', 'mkd-text' ),
+			),
+			array(
+				'type' => 'textfield',
+				'class' => '',
+				'admin_label' => false,
+				'heading' => __( 'Link Class', 'mkd-text' ),
+				'param_name' => 'value_link_class',
 				'group' => __( 'Allgemeine Einstellungen', 'mkd-text' ),
 			),
 			array(

@@ -23,6 +23,12 @@ flexbox
   height: 100%;
 }
 
+.flexbox .section_inner_margin>.wpb_column>.vc_column-inner>.wpb_wrapper .wpb_wrapper,
+.flexbox .full_section_inner>.wpb_column>.vc_column-inner>.wpb_wrapper .wpb_wrapper {
+  height: 100%;
+  position: relative;
+}
+
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////
 mkd_box
 /////////////////////////////////////////////////////////////////////////////////////////////////////*/
@@ -64,10 +70,32 @@ mkd_box
   margin-right: 20px;
 }
 
-.mkd_box .vc_column-inner .wpb_wrapper .qbutton {
+.mkd_box .vc_column-inner .wpb_wrapper a.qbutton {
   margin-top: 20px;
   margin-left: 20px;
   margin-right: 20px;
+  position: absolute;
+  bottom: 0;
+}
+
+.mkd_box .vc_column-inner .wpb_wrapper span.qbutton {
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: transparent;
+  border-color: transparent;
+  background-color: transparent;
+  z-index: -1;
+}
+
+.mkd_box .vc_column-inner .wpb_wrapper span.qbutton:hover {
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: transparent;
+  border-color: transparent;
+  background-color: transparent;
+  cursor: default;
 }
 
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////
