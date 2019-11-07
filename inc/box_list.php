@@ -46,14 +46,6 @@ function create_box_list_shortcode($atts) {
 		'orderby' => $orderby,
 		'order' => $order,
 		'posts_per_page' => $posts_per_page,
-		'layout' => $layout,
-		'beitragsbild' => $beitragsbild,
-		'titel' => $titel,
-		'ueberschrift' => $ueberschrift,
-		'textauszug' => $textauszug,
-		'more_button' => $more_button,
-		'button_text' => $button_text,
-		'button_icon' => $button_icon,
   ));
 
   // Output Code
@@ -108,7 +100,10 @@ function create_box_list_shortcode($atts) {
 		{
     	$output .= '<a itemprop="url" href="'.get_the_permalink( $post_id ).'" class="qbutton  small default">'.$button_text.''.$icon.'</a>';
 		}
-
+		if($more_button == "1")
+		{
+			$output .= '<span class="qbutton  small default">&nbsp;</span>';
+		}
 		$output .= '</div>';
     $output .= '</div>';
     $output .= '</div>';

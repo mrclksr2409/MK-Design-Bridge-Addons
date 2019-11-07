@@ -137,10 +137,32 @@ mkd_box_list
   margin-right: 20px;
 }
 
-.mkd_box_list .vc_column-inner .wpb_wrapper .qbutton {
+.mkd_box_list .vc_column-inner .wpb_wrapper a.qbutton {
   margin-top: 20px;
   margin-left: 20px;
   margin-right: 20px;
+  position: absolute;
+  bottom: 20px;
+}
+
+.mkd_box_list .vc_column-inner .wpb_wrapper span.qbutton {
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: transparent;
+  border-color: transparent;
+  background-color: transparent;
+  z-index: -1;
+}
+
+.mkd_box_list .vc_column-inner .wpb_wrapper span.qbutton:hover {
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: transparent;
+  border-color: transparent;
+  background-color: transparent;
+  cursor: default;
 }
 
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////

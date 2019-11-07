@@ -1,276 +1,304 @@
 <?php
 // Create Shortcode mkd_portfolio_list
-// Use the shortcode: [mkd_portfolio_list post_type="" post_status="" numberposts="" order="" orderby=""]
-function create_mkdportfoliolist_shortcode($atts) {
+// Use the shortcode: [mkd_portfolio_list order_by="" order="" number="" number_of_blog="" category=""]
+function create_portfolio_list_shortcode($atts) {
 	// Attributes
 	$atts = shortcode_atts(
 		array(
-			'post_type' => 'portfolio_page',
+			'post_type' => 'post',
+			'category_name' => '',
 			'post_status' => '',
-			'numberposts' => '',
-			'order' => '',
 			'orderby' => '',
-      'exclusion' => '',
+			'order' => '',
+			'posts_per_page' => '',
+			'layout' => '',
+			'show_beitragsbild' => '1',
+			'show_ueberschrift' => '1',
+			'tag_ueberschrift' => 'h1',
+			'show_textauszug' => '1',
+			'show_button' => '1',
+			'value_button' => __( 'weiterlesen', 'mkd-text' ),
+			'icon_button' => '',
 		),
 		$atts,
-		'mkd_portfolio_list'
+		'mkd_portfolio'
 	);
 	// Attributes in var
 	$post_type = $atts['post_type'];
+	$category_name = $atts['category_name'];
 	$post_status = $atts['post_status'];
-	$numberposts = $atts['numberposts'];
-	$order = $atts['order'];
 	$orderby = $atts['orderby'];
-  $exclusion = $atts['exclusion'];
-
-  $exclusion = explode(",", $exclusion);
+	$order = $atts['order'];
+	$posts_per_page = $atts['posts_per_page'];
+	$layout = $atts['layout'];
+	$show_beitragsbild = $atts['show_beitragsbild'];
+	$show_ueberschrift = $atts['show_ueberschrift'];
+	$tag_ueberschrift = $atts['tag_ueberschrift'];
+	$show_textauszug = $atts['show_textauszug'];
+	$show_button = $atts['show_button'];
+	$value_button = $atts['value_button'];
+	$icon_button = $atts['icon_button'];
 
   $query = new WP_Query(array(
-    'post_type'		=> $post_type,
-    'post_status'	=> $post_status,
-    'numberposts'	=> $numberposts,
-    'order'			=> $order,
-    'orderby'		=> $orderby
+		'post_type' => $post_type,
+		'category_name' => $category_name,
+  	'post_status' => $post_status,
+		'orderby' => $orderby,
+		'order' => $order,
+		'posts_per_page' => $posts_per_page,
   ));
 
 	// Output Code
-  $output = '<div class="mkd_portfolio_list wpb_column vc_column_container vc_col-sm-12">';
-  $output .= '<div class="vc_column-inner">';
-  $output .= '<div class="wpb_wrapper" style="margin: 0px -15px">';
-  $output .= '<div class="vc_row wpb_row section vc_row-fluid vc_inner " style=" text-align:left;">';
-  $output .= '<div class=" full_section_inner clearfix">';
+	$output = '<div class="mkd_portfolio_list vc_row wpb_row section vc_row-fluid grid_section flexbox" style=" text-align:left;">';
+	$output .= '<div class=" section_inner clearfix">';
+	$output .= '<div class="section_inner_margin clearfix">';
 
   while ($query->have_posts())
   {
     $query->the_post();
     $post_id = get_the_ID();
 
-    if(!in_array($post_id, $exclusion))
-    {
-      $output .= '<div class="wpb_column vc_column_container vc_col-sm-4 vc_col-has-fill ">';
-      $output .= '<div class="vc_column-inner">';
-      $output .= '<div class="wpb_wrapper">';
-      $output .= '<div class="wpb_single_image wpb_content_element vc_align_left">';
-      $output .= '<div class="wpb_wrapper">';
-      $output .= '<a href="'.get_permalink($post_id).'" target="_self" alt="'.get_the_title($post_id).'" title="'.get_the_title($post_id).'">';
-      $output .= '<div class="vc_single_image-wrapper vc_box_border_grey" style="background-image: url('.get_the_post_thumbnail_url($post_id).')">';
-      $output .= '</div>';
-      $output .= '</a>';
-			if(get_post_meta( $post_id, 'mkd_portfolio_video_video-link', TRUE ))
-			{
-				$output .= '<a itemprop="url" href="'.get_post_meta( $post_id, 'mkd_portfolio_video_video-link', TRUE ).'" alt="'.get_the_title($post_id).'" title="'.get_the_title($post_id).'" class="qbutton  small default">Video<i class="qode_icon_font_awesome fa fa-play qode_button_icon_element" style=""></i></a>';
-			}
-      $output .= '</div>';
-      $output .= '</div>';
-      $output .= '</div>';
-      $output .= '</div>';
-      $output .= '</div>';
-    }
+		if($button_icon != "")
+		{
+			$icon = ' <i class="qode_icon_font_awesome fa '.$button_icon.' qode_button_icon_element"></i>';
+		}
+
+		$output .= 'test';
+
+		$output .= '<div class="wpb_column vc_column_container vc_col-sm-'.$layout.'">';
+		$output .= '<div class="vc_column-inner">';
+		$output .= '<div class="wpb_wrapper">';
+
+		if($show_beitragsbild == "1")
+		{
+	    $output .= '<div class="wpb_single_image wpb_content_element vc_align_left">';
+	    $output .= '<div class="wpb_wrapper">';
+	    $output .= '<a href="'.get_the_permalink( $post_id ).'">';
+	    $output .= '<div class="vc_single_image-wrapper vc_box_border_grey" style="background-image: url('.get_the_post_thumbnail_url( $post_id ).')">';
+	    $output .= '</div>';
+	    $output .= '</a>';
+	    $output .= '</div>';
+	    $output .= '</div>';
+		}
+		if($show_ueberschrift == "1")
+		{
+	    $output .= '<div class="wpb_text_column wpb_content_element">';
+	    $output .= '<div class="wpb_wrapper">';
+	    $output .= '<a href="'.get_the_permalink( $post_id ).'"><' . $ueberschrift . '>' . get_the_title($post_id) . '</' . $ueberschrift . '></a>';
+	    $output .= '</div>';
+	    $output .= '</div>';
+		}
+    if($show_textauszug == "1")
+		{
+			$output .= '<div class="wpb_text_column wpb_content_element">';
+	    $output .= '<div class="wpb_wrapper">';
+			$output .= '<p>'.get_the_excerpt( $post_id ).'</p>';
+			$output .= '</div>';
+	    $output .= '</div>';
+		}
+		if($show_button == "1")
+		{
+    	$output .= '<a itemprop="url" href="'.get_the_permalink( $post_id ).'" class="qbutton  small default">'.$button_text.''.$icon.'</a>';
+		}
+		if($show_button == "1")
+		{
+			$output .= '<span class="qbutton  small default">&nbsp;</span>';
+		}
+		$output .= '</div>';
+    $output .= '</div>';
+    $output .= '</div>';
   }
 
-  $output .= '</div>';
-  $output .= '</div>';
-  $output .= '</div>';
-  $output .= '</div>';
-  $output .= '</div>';
+	$output .= '</div>';
+	$output .= '</div>';
+	$output .= '</div>';
+
 
 	return $output;
 }
-add_shortcode( 'mkd_portfolio_list', 'create_mkdportfoliolist_shortcode' );
+add_shortcode( 'mkd_portfolio_list', 'create_portfolio_list_shortcode' );
 
-// Create Portfolio List element for Visual Composer
-add_action( 'vc_before_init', 'mkdportfoliolist_integrateWithVC' );
-function mkdportfoliolist_integrateWithVC() {
+// Create Blog Box element for Visual Composer
+add_action( 'vc_before_init', 'portfolio_integrateWithVC' );
+function portfolio_integrateWithVC() {
 	vc_map( array(
-		'name' => __( 'Portfolio List', 'mkd-text' ),
-		'base' => 'mkd_portfolio_list',
+		'name' => __( 'Portfolio Liste', 'mkd-text' ),
+		'description' => __( 'Zeigt in einer Box eine verlinkte Seite an.', 'mkd-text' ),
+		'base' => 'mkd_portfolio',
     'icon' => plugins_url( 'images/favicon.jpg', dirname(__FILE__) ),
 		'show_settings_on_create' => true,
 		'category' => __( 'MK Design', 'mkd-text'),
 		'params' => array(
 			array(
-				'type' => 'dropdown',
+				'type' => 'posttypes',
 				'holder' => 'div',
 				'class' => '',
 				'admin_label' => false,
-				'heading' => __( 'Post Status', 'mkd-text' ),
+				'heading' => __( 'Beitragstyp', 'mkd-text' ),
+				'param_name' => 'post_type',
+				'group' => __( 'Allgemeine Einstellungen', 'mkd-text' ),
+			),
+			array(
+				'type' => 'textfield',
+				'class' => '',
+				'admin_label' => false,
+				'heading' => __( 'Kategorie', 'mkd-text' ),
+				'param_name' => 'category_name',
+				'group' => __( 'Allgemeine Einstellungen', 'mkd-text' ),
+			),
+			array(
+				'type' => 'dropdown',
+				'class' => '',
+				'admin_label' => false,
+				'heading' => __( 'Status des Beitrags', 'mkd-text' ),
 				'param_name' => 'post_status',
-        'value' => array(
-          'Publish' => 'publish',
-          'Future' => 'future',
-          'Draft' => 'draft',
-          'Pending' => 'pending',
-          'Private' => 'private',
-          'Trash' => 'trash',
-          'Auto-Draft' => 'auto-draft',
-          'Inherit' => 'inherit',
-        ),
-			),
-			array(
-				'type' => 'textfield',
-				'holder' => 'div',
-				'class' => '',
-				'admin_label' => false,
-				'heading' => __( 'Gesamtanzahl der anzuzeigenden Elemente', 'mkd-text' ),
-				'param_name' => 'numberposts',
-			),
-      array(
-				'type' => 'textfield',
-				'holder' => 'div',
-				'class' => '',
-				'admin_label' => false,
-				'heading' => __( 'Ausschließen', 'mkd-text' ),
-				'param_name' => 'exclusion',
+				'value' => array(
+					'Publish' => 'publish',
+					'Future' => 'future',
+					'Draft' => 'draft',
+					'Pending' => 'pending',
+					'Private' => 'private',
+					'Trash' => 'trash',
+					'Auto-Draft' => 'auto-draft',
+					'Inherit' => 'inherit',
+				),
+				'group' => __( 'Allgemeine Einstellungen', 'mkd-text' ),
 			),
 			array(
 				'type' => 'dropdown',
-				'holder' => 'div',
-				'class' => '',
-				'admin_label' => false,
-				'heading' => __( 'Sortierung', 'mkd-text' ),
-				'param_name' => 'order',
-        'value' => array(
-          'aufsteigend' => 'ASC',
-          'absteigend' => 'DESC',
-        ),
-			),
-			array(
-				'type' => 'dropdown',
-				'holder' => 'div',
 				'class' => '',
 				'admin_label' => false,
 				'heading' => __( 'Sortiert nach', 'mkd-text' ),
 				'param_name' => 'orderby',
-        'value' => array(
-          'none' => 'none',
-          'ID' => 'ID',
-          'author' => 'author',
-          'title' => 'title',
-          'name' => 'name',
-          'date' => 'date',
-          'menu_order' => 'menu_order',
-        ),
+				'value' => array(
+					'keine' => 'none',
+					'ID' => 'ID',
+					'Autor' => 'author',
+					'Titel' => 'title',
+					'Name' => 'name',
+					'Datum' => 'date',
+					'Menü-Reihenfolge' => 'menu_order',
+				),
+				'group' => __( 'Allgemeine Einstellungen', 'mkd-text' ),
 			),
-		)
-	) );
-}
-
-
-/**
- * Generated by the WordPress Meta Box Generator at http://goo.gl/8nwllb
- */
-class Rational_Meta_Box {
-	private $screens = array(
-		'portfolio_page',
+			array(
+				'type' => 'dropdown',
+				'class' => '',
+				'admin_label' => false,
+				'heading' => __( 'Sortierung', 'mkd-text' ),
+				'param_name' => 'order',
+				'value' => array(
+					'aufsteigend' => 'ASC',
+					'absteigend' => 'DESC',
+				),
+				'group' => __( 'Allgemeine Einstellungen', 'mkd-text' ),
+			),
+			array(
+				'type' => 'textfield',
+				'class' => '',
+				'admin_label' => false,
+				'heading' => __( 'Anzahl der Blog-Einträge', 'mkd-text' ),
+				'param_name' => 'posts_per_page',
+				'description' => __( '-1 sind alle', 'mkd-text' ),
+				'group' => __( 'Allgemeine Einstellungen', 'mkd-text' ),
+			),
+			array(
+				'type' => 'dropdown',
+				'class' => '',
+				'admin_label' => false,
+				'heading' => __( 'Layout', 'mkd-text' ),
+				'param_name' => 'layout',
+				'value' => array(
+					'1 Spalten' => '12',
+					'2 Spalten' => '6',
+					'3 Spalten' => '4',
+					'4 Spalten' => '3',
+					'5 Spalten' => '1/5',
+					'6 Spalten' => '2',
+				),
+				'group' => __( 'Designeinstellungen', 'mkd-text' ),
+			),
+			array(
+				'type' => 'dropdown',
+				'class' => '',
+				'admin_label' => false,
+				'heading' => __( 'Beitragsbild', 'mkd-text' ),
+				'value' => array(
+					'anzeigen' => '1',
+					'nicht anzeigen' => '0',
+        ),
+				'param_name' => 'show_beitragsbild',
+				'group' => __( 'Designeinstellungen', 'mkd-text' ),
+			),
+			array(
+				'type' => 'dropdown',
+				'class' => '',
+				'admin_label' => false,
+				'heading' => __( 'Überschrift', 'mkd-text' ),
+				'value' => array(
+					'anzeigen' => '1',
+					'nicht anzeigen' => '0',
+        ),
+				'param_name' => 'show_ueberschrift',
+				'group' => __( 'Designeinstellungen', 'mkd-text' ),
+			),
+			array(
+				'type' => 'dropdown',
+				'class' => '',
+				'admin_label' => false,
+				'heading' => __( 'Überschrift', 'mkd-text' ),
+				'value' => array(
+					'Überschrift 1' => 'h1',
+					'Überschrift 2' => 'h2',
+					'Überschrift 3' => 'h3',
+					'Überschrift 4' => 'h4',
+					'Überschrift 5' => 'h5',
+					'Überschrift 6' => 'h6',
+        ),
+				'param_name' => 'tag_ueberschrift',
+				'group' => __( 'Designeinstellungen', 'mkd-text' ),
+			),
+			array(
+				'type' => 'dropdown',
+				'class' => '',
+				'admin_label' => false,
+				'heading' => __( 'Textauszug', 'mkd-text' ),
+				'value' => array(
+					'anzeigen' => '1',
+					'nicht anzeigen' => '0',
+        ),
+				'param_name' => 'show_textauszug',
+				'group' => __( 'Designeinstellungen', 'mkd-text' ),
+			),
+			array(
+				'type' => 'dropdown',
+				'class' => '',
+				'admin_label' => false,
+				'heading' => __( 'Button', 'mkd-text' ),
+				'value' => array(
+					'anzeigen' => '1',
+					'nicht anzeigen' => '0',
+        ),
+				'param_name' => 'show_button',
+				'group' => __( 'Designeinstellungen', 'mkd-text' ),
+			),
+			array(
+				'type' => 'textfield',
+				'class' => '',
+				'admin_label' => false,
+				'heading' => __( 'Button Text', 'mkd-text' ),
+				'value' => __( 'weiterlesen', 'mkd-text' ),
+				'param_name' => 'value_button',
+				'group' => __( 'Designeinstellungen', 'mkd-text' ),
+			),
+			array(
+				'type' => 'textfield',
+				'class' => '',
+				'admin_label' => false,
+				'heading' => __( 'Button Icon', 'mkd-text' ),
+				'param_name' => 'icon_button',
+				'group' => __( 'Designeinstellungen', 'mkd-text' ),
+			),
+		))
 	);
-	private $fields = array(
-		array(
-			'id' => 'video-link',
-			'label' => 'Video Link',
-			'type' => 'url',
-		),
-	);
-
-	/**
-	 * Class construct method. Adds actions to their respective WordPress hooks.
-	 */
-	public function __construct() {
-		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
-		add_action( 'save_post', array( $this, 'save_post' ) );
-	}
-
-	/**
-	 * Hooks into WordPress' add_meta_boxes function.
-	 * Goes through screens (post types) and adds the meta box.
-	 */
-	public function add_meta_boxes() {
-		foreach ( $this->screens as $screen ) {
-			add_meta_box(
-				'mkd-portfolio-video',
-				__( 'MKD Portfolio Video', 'mkd-text' ),
-				array( $this, 'add_meta_box_callback' ),
-				$screen,
-				'advanced',
-				'default'
-			);
-		}
-	}
-
-	/**
-	 * Generates the HTML for the meta box
-	 *
-	 * @param object $post WordPress post object
-	 */
-	public function add_meta_box_callback( $post ) {
-		wp_nonce_field( 'mkd_portfolio_video_data', 'mkd_portfolio_video_nonce' );
-		$this->generate_fields( $post );
-	}
-
-	/**
-	 * Generates the field's HTML for the meta box.
-	 */
-	public function generate_fields( $post ) {
-		$output = '';
-		foreach ( $this->fields as $field ) {
-			$label = '<label for="' . $field['id'] . '">' . $field['label'] . '</label>';
-			$db_value = get_post_meta( $post->ID, 'mkd_portfolio_video_' . $field['id'], true );
-			switch ( $field['type'] ) {
-				default:
-					$input = sprintf(
-						'<input %s id="%s" name="%s" type="%s" value="%s">',
-						$field['type'] !== 'color' ? 'class="regular-text"' : '',
-						$field['id'],
-						$field['id'],
-						$field['type'],
-						$db_value
-					);
-			}
-			$output .= $this->row_format( $label, $input );
-		}
-		echo '<table class="form-table"><tbody>' . $output . '</tbody></table>';
-	}
-
-	/**
-	 * Generates the HTML for table rows.
-	 */
-	public function row_format( $label, $input ) {
-		return sprintf(
-			'<tr><th scope="row">%s</th><td>%s</td></tr>',
-			$label,
-			$input
-		);
-	}
-	/**
-	 * Hooks into WordPress' save_post function
-	 */
-	public function save_post( $post_id ) {
-		if ( ! isset( $_POST['mkd_portfolio_video_nonce'] ) )
-			return $post_id;
-
-		$nonce = $_POST['mkd_portfolio_video_nonce'];
-		if ( !wp_verify_nonce( $nonce, 'mkd_portfolio_video_data' ) )
-			return $post_id;
-
-		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
-			return $post_id;
-
-		foreach ( $this->fields as $field ) {
-			if ( isset( $_POST[ $field['id'] ] ) ) {
-				switch ( $field['type'] ) {
-					case 'email':
-						$_POST[ $field['id'] ] = sanitize_email( $_POST[ $field['id'] ] );
-						break;
-					case 'text':
-						$_POST[ $field['id'] ] = sanitize_text_field( $_POST[ $field['id'] ] );
-						break;
-				}
-				update_post_meta( $post_id, 'mkd_portfolio_video_' . $field['id'], $_POST[ $field['id'] ] );
-			} else if ( $field['type'] === 'checkbox' ) {
-				update_post_meta( $post_id, 'mkd_portfolio_video_' . $field['id'], '0' );
-			}
-		}
-	}
 }
-new Rational_Meta_Box;
-
-?>
