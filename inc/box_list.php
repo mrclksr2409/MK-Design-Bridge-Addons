@@ -13,6 +13,7 @@ function create_box_list_shortcode($atts) {
 			'posts_per_page' => '',
 			'layout' => '',
 			'beitragsbild' => '1',
+			'beitragsbild_style' => 'cover',
 			'titel' => '1',
 			'ueberschrift' => 'h1',
 			'textauszug' => '1',
@@ -32,6 +33,7 @@ function create_box_list_shortcode($atts) {
 	$posts_per_page = $atts['posts_per_page'];
 	$layout = $atts['layout'];
 	$beitragsbild = $atts['beitragsbild'];
+	$beitragsbild_style = $atts['beitragsbild_style'];
 	$titel = $atts['titel'];
 	$ueberschrift = $atts['ueberschrift'];
 	$textauszug = $atts['textauszug'];
@@ -74,10 +76,18 @@ function create_box_list_shortcode($atts) {
 	    $output .= '<div class="wpb_single_image wpb_content_element vc_align_left">';
 	    $output .= '<div class="wpb_wrapper">';
 	    $output .= '<a href="'.get_the_permalink( $post_id ).'">';
-	    $output .= '<div class="vc_single_image-wrapper vc_box_border_grey" style="background-image: url('.get_the_post_thumbnail_url( $post_id ).')">';
+	    $output .= '<div class="vc_single_image-wrapper vc_box_border_grey '.$beitragsbild_style.'" style="background-image: url('.get_the_post_thumbnail_url( $post_id ).')">';
 	    $output .= '</div>';
 	    $output .= '</a>';
 	    $output .= '</div>';
+	    $output .= '</div>';
+		}
+		if($beitragsbild == "0")
+		{
+	    $output .= '<div class="vc_empty_space" style="height: 25px">';
+	    $output .= '<span class="vc_empty_space_inner">';
+	    $output .= '<span class="empty_space_image"></span>';
+	    $output .= '</span>';
 	    $output .= '</div>';
 		}
 		if($titel == "1")
@@ -227,6 +237,18 @@ function box_list_integrateWithVC() {
         'value' => array(
 					'anzeigen' => '1',
 					'nicht anzeigen' => '0',
+        ),
+				'group' => __( 'Designeinstellungen', 'mkd-text' ),
+			),
+			array(
+				'type' => 'dropdown',
+				'class' => '',
+				'admin_label' => false,
+				'heading' => __( 'Beitragsbild Style', 'mkd-text' ),
+				'param_name' => 'beitragsbild_style',
+        'value' => array(
+					'Cover' => 'cover',
+					'Contain' => 'contain',
         ),
 				'group' => __( 'Designeinstellungen', 'mkd-text' ),
 			),
