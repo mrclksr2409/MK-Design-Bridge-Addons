@@ -158,6 +158,10 @@ mkd_box_list
   bottom: 20px;
 }
 
+.mkd_box_list .vc_column-inner .wpb_wrapper a.qbutton.video {
+  right: 0px;
+}
+
 .mkd_box_list .vc_column-inner .wpb_wrapper span.qbutton {
   margin: 20px;
   color: transparent;
