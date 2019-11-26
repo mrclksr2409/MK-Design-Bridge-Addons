@@ -11,6 +11,7 @@ function create_box_list_shortcode($atts) {
 			'orderby' => '',
 			'order' => '',
 			'posts_per_page' => '',
+			'post__not_in' => '',
 			'layout' => '',
 			'beitragsbild' => '1',
 			'beitragsbild_style' => 'cover',
@@ -31,6 +32,7 @@ function create_box_list_shortcode($atts) {
 	$orderby = $atts['orderby'];
 	$order = $atts['order'];
 	$posts_per_page = $atts['posts_per_page'];
+	$post__not_in = $teile = explode(",", $atts['post__not_in']);
 	$layout = $atts['layout'];
 	$beitragsbild = $atts['beitragsbild'];
 	$beitragsbild_style = $atts['beitragsbild_style'];
@@ -48,6 +50,7 @@ function create_box_list_shortcode($atts) {
 		'orderby' => $orderby,
 		'order' => $order,
 		'posts_per_page' => $posts_per_page,
+		'post__not_in' => $post__not_in,
   ));
 
   // Output Code
@@ -214,6 +217,15 @@ function box_list_integrateWithVC() {
 				'heading' => __( 'Anzahl der Blog-Einträge', 'mkd-text' ),
 				'param_name' => 'posts_per_page',
 				'description' => __( '-1 sind alle', 'mkd-text' ),
+				'group' => __( 'Allgemeine Einstellungen', 'mkd-text' ),
+			),
+			array(
+				'type' => 'textfield',
+				'class' => '',
+				'admin_label' => false,
+				'heading' => __( 'Zeige alle Beiträge außer den angegebenen', 'mkd-text' ),
+				'param_name' => 'post__not_in',
+				'description' => __( 'IDs mit Komma trennen.', 'mkd-text' ),
 				'group' => __( 'Allgemeine Einstellungen', 'mkd-text' ),
 			),
 			array(
