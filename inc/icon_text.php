@@ -6,6 +6,7 @@ function create_mkdicontext_shortcode($atts) {
 	$atts = shortcode_atts(
 		array(
 			'icon' => '',
+			'icon_image' => '',
 			'title' => '',
 			'description' => '',
 			'link' => '',
@@ -15,6 +16,7 @@ function create_mkdicontext_shortcode($atts) {
 	);
 	// Attributes in var
 	$icon = $atts['icon'];
+	$icon_image = wp_get_attachment_image_src($atts['icon_image'], "thumbnail");
 	$title = $atts['title'];
 	$description = $atts['description'];
 	$link = vc_build_link($atts['link']);
@@ -34,8 +36,6 @@ function create_mkdicontext_shortcode($atts) {
 		$build_link .= ' rel="'.$link['rel'].'"';
 	}
 
-
-
 	// Output Code
 	$output = '<div class="mkd_icon_text q_icon_with_title small circle left_from_title ">';
 	$output .= '<div class="icon_text_holder">';
@@ -44,11 +44,20 @@ function create_mkdicontext_shortcode($atts) {
 	$output .= '<div class="icon_holder">';
 	if(isset($link['url']))
 	{
-		$output .= '<a itemprop="url"'.$build_link.'>';
+		$output .= '<a itemprop="url"'.$build_link.' class="anchor">';
 	}
-	$output .= '<span class="qode_iwt_icon_holder fa-stack fa-2x" style="border-color: #f28c19;background-color: #f28c19;">';
-	$output .= '<i class="qode_icon_font_awesome fa '.$icon.' qode_iwt_icon_element" style="color: #ffffff;"></i>';
-	$output .= '</span>';
+
+	if(isset($icon_image[0]))
+	{
+		$output .= '<span class="qode_iwt_icon_holder fa-stack fa-2x">';
+		$output .= '<img src="'.$icon_image[0].'">';
+		$output .= '</span>';
+	}
+	else {
+		$output .= '<span class="qode_iwt_icon_holder fa-stack fa-2x" style="border-color: #f28c19;background-color: #f28c19;">';
+		$output .= '<i class="qode_icon_font_awesome fa '.$icon.' qode_iwt_icon_element" style="color: #ffffff;"></i>';
+		$output .= '</span>';
+	}
 	if(isset($link['url']))
 	{
 		$output .= '</a>';
@@ -57,7 +66,7 @@ function create_mkdicontext_shortcode($atts) {
 	$output .= '<h3 class="icon_title">';
 	if(isset($link['url']))
 	{
-		$output .= '<a itemprop="url"'.$build_link.' class="icon_title">';
+		$output .= '<a itemprop="url"'.$build_link.' class="icon_title anchor">';
 	}
 	$output .= $title;
 	if(isset($link['url']))
@@ -66,12 +75,15 @@ function create_mkdicontext_shortcode($atts) {
 	}
 	$output .= '</h3>';
 	$output .= '</div>';
+	if($description != "")
+	{
 	$output .= '<p>'.$description;
 	if(isset($link['url']))
 	{
 		$output .= ' … <a itemprop="url"'.$build_link.'>mehr</a>';
 	}
 	$output .= '</p>';
+	}
 	$output .= '</div>';
 	$output .= '</div>';
 	$output .= '</div>';
@@ -99,6 +111,14 @@ function mkdicontext_integrateWithVC() {
 				'heading' => __( 'Icon', 'mkd-text' ),
 				'param_name' => 'icon',
 				'description' => __( 'https://fontawesome.com/v4.7.0/icons/', 'mkd-text' )
+			),
+			array(
+				'type' => 'attach_image',
+				'holder' => 'div',
+				'class' => '',
+				'admin_label' => true,
+				'heading' => __( 'Icon', 'mkd-text' ),
+				'param_name' => 'icon_image',
 			),
 			array(
 				'type' => 'textfield',

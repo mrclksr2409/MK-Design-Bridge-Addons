@@ -181,6 +181,23 @@ mkd_box_list
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////
 mkd_icon_text
 /////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+.mkd_icon_text.q_icon_with_title .icon_text_inner {
+    padding: 0px;
+}
+
+.mkd_icon_text.q_icon_with_title .icon_title_holder {
+    margin: 0px;
+}
+
+.mkd_icon_text.q_icon_with_title .icon_holder .fa-stack {
+    border: 0px !important;
+}
+
+.mkd_icon_text.q_icon_with_title .icon_holder img {
+    width: 100% !important;
+}
+
 .mkd_icon_text p {
   padding-left: 83px;
 }
