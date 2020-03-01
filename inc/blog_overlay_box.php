@@ -41,7 +41,7 @@ function create_mkd_blog_overlay_box_shortcode($atts) {
 			$output .= '		<div class="wpb_column vc_column_container vc_col-sm-12">';
 			$output .= '			<div class="vc_column-inner">';
 			$output .= '				<div class="wpb_wrapper">';
-			$output .= '					<div class="q_elements_holder two_columns eh_two_columns_33_66 responsive_mode_from_768">';
+			$output .= '					<div class="q_elements_holder two_columns eh_two_columns_33_66 responsive_mode_from_1000">';
 			$output .= '						<div class="mkd_elements_item_textbox left q_elements_item " data-animation="no" data-item-class="q_elements_holder_custom_827460" style="background-image: url('.wp_get_attachment_url($hintergrund).');">';
 			$output .= '							<div class="q_elements_item_inner">';
 			$output .= '								<div class="q_elements_item_content q_elements_holder_custom_827460" style="padding:50px">';
@@ -115,7 +115,7 @@ function create_mkd_blog_overlay_box_shortcode($atts) {
 			$output .= '		<div class="wpb_column vc_column_container vc_col-sm-12">';
 			$output .= '			<div class="vc_column-inner">';
 			$output .= '				<div class="wpb_wrapper">';
-			$output .= '					<div class="q_elements_holder two_columns eh_two_columns_66_33 responsive_mode_from_768">';
+			$output .= '					<div class="q_elements_holder two_columns eh_two_columns_66_33 responsive_mode_from_1000">';
 			$output .= '						<div class="q_elements_item " data-animation="no" data-item-class="q_elements_holder_custom_226314" style="vertical-align:middle;">';
 			$output .= '							<div class="q_elements_item_inner">';
 			$output .= '								<div class="q_elements_item_content q_elements_holder_custom_226314">';
