@@ -192,6 +192,7 @@ mkd_icon_text
 
 .mkd_icon_text.q_icon_with_title .icon_holder .fa-stack {
     border: 0px !important;
+    width: 64px;
 }
 
 .mkd_icon_text.q_icon_with_title .icon_holder img {
