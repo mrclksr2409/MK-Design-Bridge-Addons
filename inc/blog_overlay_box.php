@@ -42,9 +42,26 @@ function create_mkd_blog_overlay_box_shortcode($atts) {
 			$output .= '			<div class="vc_column-inner">';
 			$output .= '				<div class="wpb_wrapper">';
 			$output .= '					<div class="q_elements_holder two_columns eh_two_columns_33_66 responsive_mode_from_1000">';
+
+			$output .= '						<div class="q_elements_item mkd_hide_on_desktop" data-animation="no" data-item-class="q_elements_holder_custom_226314" style="vertical-align:middle;">';
+			$output .= '							<div class="q_elements_item_inner">';
+			$output .= '								<div class="q_elements_item_content q_elements_holder_custom_226314">';
+			$output .= '									<div class="wpb_single_image wpb_content_element vc_align_left  qode_image_hover_zoom_in">';
+			$output .= '										<div class="wpb_wrapper">';
+			$output .= '											<a class="qode-prettyphoto qode-single-image-pretty-photo" href="'.get_permalink($post->ID).'" target="_self">';
+			$output .= '												<div class="vc_single_image-wrapper   vc_box_border_grey">';
+			$output .= '													<img class="vc_single_image-img " src="'.get_the_post_thumbnail_url($post->ID, 'post-overlay-list' ).'" width="820" height="500" alt="' . $post->post_title . '" title="' . $post->post_title . '">';
+			$output .= '												</div>';
+			$output .= '											</a>';
+			$output .= '										</div>';
+			$output .= '									</div>';
+			$output .= '								</div>';
+			$output .= '							</div>';
+			$output .= '						</div>';
+
 			$output .= '						<div class="mkd_elements_item_textbox left q_elements_item " data-animation="no" data-item-class="q_elements_holder_custom_827460" style="background-image: url('.wp_get_attachment_url($hintergrund).');">';
 			$output .= '							<div class="q_elements_item_inner">';
-			$output .= '								<div class="q_elements_item_content q_elements_holder_custom_827460" style="padding:50px">';
+			$output .= '								<div class="q_elements_item_content q_elements_holder_custom_827460">';
 			$output .= '									<div class="wpb_text_column wpb_content_element ">';
 			$output .= '										<div class="wpb_wrapper">';
 			$output .= '											<h3 class="h1">' . $post->post_title . '</h3>';
@@ -69,7 +86,8 @@ function create_mkd_blog_overlay_box_shortcode($atts) {
 			$output .= '								</div>';
 			$output .= '							</div>';
 			$output .= '						</div>';
-			$output .= '						<div class="q_elements_item " data-animation="no" data-item-class="q_elements_holder_custom_226314" style="vertical-align:middle;">';
+
+			$output .= '						<div class="q_elements_item mkd_hide_on_mobile" data-animation="no" data-item-class="q_elements_holder_custom_226314" style="vertical-align:middle;">';
 			$output .= '							<div class="q_elements_item_inner">';
 			$output .= '								<div class="q_elements_item_content q_elements_holder_custom_226314">';
 			$output .= '									<div class="wpb_single_image wpb_content_element vc_align_left  qode_image_hover_zoom_in">';
@@ -84,6 +102,7 @@ function create_mkd_blog_overlay_box_shortcode($atts) {
 			$output .= '								</div>';
 			$output .= '							</div>';
 			$output .= '						</div>';
+
 			$output .= '					</div>';
 			$output .= '				</div>';
 			$output .= '			</div>';
@@ -133,7 +152,7 @@ function create_mkd_blog_overlay_box_shortcode($atts) {
 			$output .= '						</div>';
 			$output .= '						<div class="mkd_elements_item_textbox right q_elements_item" data-animation="no" data-item-class="q_elements_holder_custom_827460" style="background-image: url('.wp_get_attachment_url($hintergrund).');">';
 			$output .= '							<div class="q_elements_item_inner">';
-			$output .= '								<div class="q_elements_item_content q_elements_holder_custom_827460" style="padding:50px">';
+			$output .= '								<div class="q_elements_item_content q_elements_holder_custom_827460">';
 			$output .= '									<div class="wpb_text_column wpb_content_element ">';
 			$output .= '										<div class="wpb_wrapper">';
 			$output .= '											<h3 class="h1">' . $post->post_title . '</h3>';
