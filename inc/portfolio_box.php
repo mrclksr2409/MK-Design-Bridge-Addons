@@ -7,6 +7,7 @@ function create_mkdportfoliobox_shortcode($atts) {
 		array(
       'design' => '',
       'image' => '',
+			'video-yt' => '',
 			'title' => '',
 			'description' => '',
 			'link' => '',
@@ -18,6 +19,7 @@ function create_mkdportfoliobox_shortcode($atts) {
 	// Attributes in var
   $design = $atts['design'];
 	$image = $atts['image'];
+	$videoyt = $atts['video-yt'];
 	$title = $atts['title'];
 	$description = $atts['description'];
 	$link = vc_build_link($atts['link']);
@@ -25,27 +27,39 @@ function create_mkdportfoliobox_shortcode($atts) {
 
 
 	// Output Code
-  if($design == "")
+  if($design == "eh_two_columns_25_75" or $design == "eh_two_columns_33_66")
   {
-    $output = '<div class="mkd_portfolio_box q_elements_holder two_columns eh_two_columns_25_75 responsive_mode_from_768">';
+    $output = '<div class="mkd_portfolio_box q_elements_holder two_columns '.$design.' responsive_mode_from_768">';
 
     $output .= '<div class="q_elements_item ">';
     $output .= '<div class="q_elements_item_inner">';
-    $output .= '<div class="q_elements_item_content q_elements_holder_custom_663626" style="padding:0px 50px">';
-    $output .= '<div class="wpb_single_image wpb_content_element vc_align_right">';
-    $output .= '<div class="wpb_wrapper">';
-    if(isset($link['url']))
+    if($image != "")
     {
+			$output .= '<div class="q_elements_item_content q_elements_holder_custom_663626" style="padding:0px 50px">';
+			$output .= '<div class="wpb_single_image wpb_content_element vc_align_right">';
+			$output .= '<div class="wpb_wrapper">';
+
       $output .= '<a href="'.$link['url'].'" target="'.$link['target'].'" alt="'.$link['title'].'" title="'.$link['title'].'" rel="'.$link['rel'].'">';
-    }
-    $output .= '<div class="vc_single_image-wrapper vc_box_border_grey"><img src="'.wp_get_attachment_url( $image ).'" class="vc_single_image-img attachment-full" alt="" style="max-height: 150px;"></div>';
-    if(isset($link['url']))
-    {
+			$output .= '<div class="vc_single_image-wrapper vc_box_border_grey"><img src="'.wp_get_attachment_url( $image ).'" class="vc_single_image-img attachment-full" alt="" style="max-height: 150px;"></div>';
       $output .= '</a>';
+
+			$output .= '</div>';
+			$output .= '</div>';
+			$output .= '</div>';
     }
-    $output .= '</div>';
-    $output .= '</div>';
-    $output .= '</div>';
+
+		if($videoyt != "")
+    {
+			$output .= '<div class="q_elements_item_content q_elements_holder_custom_663626">';
+			$output .= '<div class="wpb_single_image wpb_content_element vc_align_right">';
+			$output .= '<div class="wpb_wrapper">';
+
+			$output .= '<div class="wpb_video_wrapper"><iframe title="'.$title.'" width="1060" height="596" src="https://www.youtube.com/embed/'.$videoyt.'?feature=oembed" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>';
+
+			$output .= '</div>';
+			$output .= '</div>';
+			$output .= '</div>';
+		}
     $output .= '</div>';
     $output .= '</div>';
 
@@ -78,7 +92,7 @@ function create_mkdportfoliobox_shortcode($atts) {
     $output .= '<span class="empty_space_image"></span>';
     $output .= '</span>';
     $output .= '</div>';
-    if(isset($link['url']))
+    if($link['url'] != "")
     {
 			$output .= '<div class="wpb_text_column wpb_content_element ">';
 			$output .= '<div class="wpb_wrapper">';
@@ -91,7 +105,7 @@ function create_mkdportfoliobox_shortcode($atts) {
     $output .= '<span class="empty_space_image"></span>';
     $output .= '</span>';
     $output .= '</div>';
-    if(isset($video['url']))
+    if($video['url'] != "")
     {
       $output .= '<a itemprop="url" href="'.$video['url'].'" target="'.$video['target'].'" alt="'.$video['title'].'" title="'.$video['title'].'" rel="'.$video['rel'].'" class="qbutton  small default">Video<i class="qode_icon_font_awesome fa fa-play qode_button_icon_element" style=""></i></a>';
     }
@@ -102,9 +116,9 @@ function create_mkdportfoliobox_shortcode($atts) {
     $output .= '</div>';
 
   }
-  if($design == "eh_two_columns_75_25")
+  if($design == "eh_two_columns_75_25" or $design == "eh_two_columns_66_33")
   {
-    $output = '<div class="mkd_portfolio_box q_elements_holder two_columns eh_two_columns_75_25 responsive_mode_from_768">';
+    $output = '<div class="mkd_portfolio_box q_elements_holder two_columns '.$design.' responsive_mode_from_768">';
 
     $output .= '<div class="q_elements_item ">';
     $output .= '<div class="q_elements_item_inner">';
@@ -148,7 +162,7 @@ function create_mkdportfoliobox_shortcode($atts) {
     $output .= '<span class="empty_space_image"></span>';
     $output .= '</span>';
     $output .= '</div>';
-		if(isset($video['url']))
+		if($video['url'] != "")
     {
       $output .= '<a itemprop="url" href="'.$video['url'].'" target="'.$video['target'].'" alt="'.$video['title'].'" title="'.$video['title'].'" rel="'.$video['rel'].'" class="qbutton  small default">Video<i class="qode_icon_font_awesome fa fa-play qode_button_icon_element" style=""></i></a>';
     }
@@ -156,23 +170,35 @@ function create_mkdportfoliobox_shortcode($atts) {
     $output .= '</div>';
     $output .= '</div>';
 
-    $output .= '<div class="q_elements_item ">';
+		$output .= '<div class="q_elements_item ">';
     $output .= '<div class="q_elements_item_inner">';
-    $output .= '<div class="q_elements_item_content q_elements_holder_custom_663626" style="padding:0px 50px">';
-    $output .= '<div class="wpb_single_image wpb_content_element vc_align_left">';
-    $output .= '<div class="wpb_wrapper">';
-    if(isset($link['url']))
+    if($image != "")
     {
+			$output .= '<div class="q_elements_item_content q_elements_holder_custom_663626" style="padding:0px 50px">';
+			$output .= '<div class="wpb_single_image wpb_content_element vc_align_right">';
+			$output .= '<div class="wpb_wrapper">';
+
       $output .= '<a href="'.$link['url'].'" target="'.$link['target'].'" alt="'.$link['title'].'" title="'.$link['title'].'" rel="'.$link['rel'].'">';
-    }
-    $output .= '<div class="vc_single_image-wrapper vc_box_border_grey"><img src="'.wp_get_attachment_url( $image ).'" class="vc_single_image-img attachment-full" alt="" style="max-height: 150px;"></div>';
-    if(isset($link['url']))
-    {
+			$output .= '<div class="vc_single_image-wrapper vc_box_border_grey"><img src="'.wp_get_attachment_url( $image ).'" class="vc_single_image-img attachment-full" alt="" style="max-height: 150px;"></div>';
       $output .= '</a>';
+
+			$output .= '</div>';
+			$output .= '</div>';
+			$output .= '</div>';
     }
-    $output .= '</div>';
-    $output .= '</div>';
-    $output .= '</div>';
+
+		if($videoyt != "")
+    {
+			$output .= '<div class="q_elements_item_content q_elements_holder_custom_663626">';
+			$output .= '<div class="wpb_single_image wpb_content_element vc_align_right">';
+			$output .= '<div class="wpb_wrapper">';
+
+			$output .= '<div class="wpb_video_wrapper"><iframe title="'.$title.'" width="1060" height="596" src="https://www.youtube.com/embed/'.$videoyt.'?feature=oembed" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>';
+
+			$output .= '</div>';
+			$output .= '</div>';
+			$output .= '</div>';
+		}
     $output .= '</div>';
     $output .= '</div>';
 
@@ -203,6 +229,8 @@ function mkdportfoliobox_integrateWithVC() {
 				'value' => array(
           '1/4 + 3/4' => 'eh_two_columns_25_75',
           '3/4 + 1/4' => 'eh_two_columns_75_25',
+					'1/3 + 2/3' => 'eh_two_columns_33_66',
+          '2/3 + 1/3' => 'eh_two_columns_66_33',
         ),
 			),
 			array(
@@ -212,6 +240,14 @@ function mkdportfoliobox_integrateWithVC() {
 				'admin_label' => false,
 				'heading' => __( 'Bild', 'mkd-text' ),
 				'param_name' => 'image',
+			),
+			array(
+				'type' => 'textfield',
+				'holder' => 'div',
+				'class' => '',
+				'admin_label' => false,
+				'heading' => __( 'Video YT', 'mkd-text' ),
+				'param_name' => 'video-yt',
 			),
 			array(
 				'type' => 'textfield',
