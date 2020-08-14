@@ -65,7 +65,7 @@ mkd_box
 }
 
 .mkd_box .vc_column-inner .wpb_wrapper .wpb_text_column {
-  margin-top: 20px;
+  padding-top: 20px;
   margin-left: 20px;
   margin-right: 20px;
 }
