@@ -553,7 +553,7 @@ function create_mkdlocationslist_shortcode($atts) {
 			}
 
 			if(get_post_meta( $post_id, "mkd_standort_maps", true) != "") {
-				$output .= '<a href="'.get_post_meta( $post_id, "mkd_standort_maps", true).'" target="_blank">'.__( 'Hier finden Sie uns in', 'mkd-text' ).'</a><br>';
+				$output .= '<a href="'.get_post_meta( $post_id, "mkd_standort_maps", true).'" target="_blank">'.__( 'Hier finden Sie uns', 'mkd-text' ).'</a><br>';
 			}
 			$output .= '</p>';
 			$output .= '</div>';
