@@ -20,8 +20,10 @@ class dgs_events_widget extends WP_Widget {
 
         $defaults = array(
             'limit' => '',
-            'format' => 'html', 'before' => '',
-            'after' => '', 'show_post_count' => false,
+            'format' => 'html',
+            'before' => '',
+            'after' => '',
+            'show_post_count' => true,
             'echo' => 1
         );
 
