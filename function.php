@@ -16,6 +16,9 @@ Author URI: https://www.your-own-design.de/
 	//include_once('inc/portfolio_widget.php');
 	include_once('inc/portfolio_list.php');
 
+// Archiv Widget
+	include_once('inc/archiv_widget.php');
+
 
 
 // fertig überarbeitet
