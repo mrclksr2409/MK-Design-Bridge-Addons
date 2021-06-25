@@ -15,7 +15,27 @@ class dgs_events_widget extends WP_Widget {
 
 	public function widget( $args, $instance ) {
 
-		echo 'hello world!';
+    echo '<div id="archives-3" class="widget widget_archive">';
+      echo '<h5>Archiv</h5>';
+
+      // get years that have posts
+      $years = $wpdb->get_results( "SELECT YEAR(post_date) AS year FROM wp_posts WHERE post_type = 'encontros' AND post_status = 'publish' GROUP BY year DESC" );
+
+      foreach ( $years as $year ) {
+         // get posts for each year
+         $posts_this_year = $wpdb->get_results( "SELECT post_title FROM wp_posts WHERE post_type = 'encontros' AND post_status = 'publish' AND YEAR(post_date) = '" . $year->year . "'" );
+         //get permalinks for each post
+             $post_link = $wpdb->get_results( "SELECT get_the_permalink() FROM wp_posts WHERE post_type = 'encontros' AND post_status = 'publish' ");
+
+             foreach ( $posts_this_year as $post ) {
+
+               echo '<ul>' . $post->post_title . '</ul>';
+             }
+               echo '<li><a href ="'.$posts_this_year.'">' . $year->year . '</a></li><ul>';
+               echo '</ul>';
+      }
+
+    echo '</div>';
 
 	}
 
