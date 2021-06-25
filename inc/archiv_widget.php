@@ -14,16 +14,30 @@ class dgs_events_widget extends WP_Widget {
 	}
 
 	public function widget( $args, $instance ) {
-    //List archives by year, then month
+    /**
+     * Display archive links based on year/month and format.
+     *
+     * The date archives will logically display dates with links to the archive post
+     * page.
+     *
+     * The 'limit' argument will only display a limited amount of links, specified
+     * by the 'limit' integer value. By default, there is no limit. The
+     * 'show_post_count' argument will show how many posts are within the archive.
+     * By default, the 'show_post_count' argument is set to false.
+     *
+     * For the 'format', 'before', and 'after' arguments, see {@link
+     * get_archives_link()}. The values of these arguments have to do with that
+     * function.
+     *
+     * @param string|array $args Optional. Override defaults.
+     */
     function wp_custom_archive($args = '') {
         global $wpdb, $wp_locale;
 
         $defaults = array(
             'limit' => '',
-            'format' => 'html',
-            'before' => '',
-            'after' => '',
-            'show_post_count' => true,
+            'format' => 'html', 'before' => '',
+            'after' => '', 'show_post_count' => false,
             'echo' => 1
         );
 
@@ -71,14 +85,12 @@ class dgs_events_widget extends WP_Widget {
                 $afterafter = $after;
                 foreach ( (array) $arcresults as $arcresult ) {
                     $url = get_month_link( $arcresult->year, $arcresult->month );
-                    $year_url = get_year_link($arcresult->year);
                     /* translators: 1: month name, 2: 4-digit year */
                     $text = sprintf(__('%s'), $wp_locale->get_month($arcresult->month));
-                    $year_text = sprintf('%d', $arcresult->year);
+                    $year_text = sprintf('<li>%d</li>', $arcresult->year);
                     if ( $show_post_count )
                         $after = '&nbsp;('.$arcresult->posts.')' . $afterafter;
-                    $year_output = get_archives_link($year_url, $year_text, $format, $before, $after);
-                    $output .= ( $arcresult->year != $temp_year ) ? $year_output : '';
+                    $output .= ( $arcresult->year != $temp_year ) ? $year_text : '';
                     $output .= get_archives_link($url, $text, $format, $before, $after);
 
                     $temp_year = $arcresult->year;
@@ -95,8 +107,7 @@ class dgs_events_widget extends WP_Widget {
 
     echo '<div id="archives-3" class="widget widget_archive">';
       echo '<h5>Archiv</h5>';
-wp_custom_archive();
-
+      wp_custom_archive();
     echo '</div>';
 
 	}

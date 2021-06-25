@@ -2,7 +2,7 @@
 /*
 Plugin Name: MK Design Bridge Addons
 Description: Fügt einig erweiterungen zur Bridge hinzu.
-Version: 0.6.3
+Version: 0.6.4
 Author: Marcel Kaiser
 Author URI: https://www.your-own-design.de/
 */
