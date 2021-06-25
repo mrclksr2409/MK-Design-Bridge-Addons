@@ -36,8 +36,10 @@ class dgs_events_widget extends WP_Widget {
 
         $defaults = array(
             'limit' => '',
-            'format' => 'html', 'before' => '',
-            'after' => '', 'show_post_count' => false,
+            'format' => 'html',
+            'before' => '',
+            'after' => '',
+            'show_post_count' => true,
             'echo' => 1
         );
 
@@ -87,7 +89,7 @@ class dgs_events_widget extends WP_Widget {
                     $url = get_month_link( $arcresult->year, $arcresult->month );
                     /* translators: 1: month name, 2: 4-digit year */
                     $text = sprintf(__('%s'), $wp_locale->get_month($arcresult->month));
-                    $year_text = sprintf('<li>%d</li>', $arcresult->year);
+                    $year_text = sprintf('<li><strong>%d</strong></li>', $arcresult->year);
                     if ( $show_post_count )
                         $after = '&nbsp;('.$arcresult->posts.')' . $afterafter;
                     $output .= ( $arcresult->year != $temp_year ) ? $year_text : '';
